@@ -57,6 +57,23 @@ namespace ArgenCatProj.View
             if (e.Node.Level != 0)
             {
                 dgvStudent.DataSource = _controller.GetCursePayments(e.Node.Text);
+                dgvStudent.Columns[0].Visible = false;
+                dgvStudent.Columns[1].Visible = false;
+                DataGridViewImageColumn imageCol = new DataGridViewImageColumn();
+                imageCol.Name = "imageCol";
+                imageCol.HeaderText = "Payed";
+                dgvStudent.Columns.Add(imageCol);
+                foreach (DataGridViewRow row in dgvStudent.Rows)
+                {
+                    if (row.Cells[1].Value.ToString() == "1")
+                    {
+                        row.Cells["imageCol"].Value = imgTreeStudent.Images["select.png"];
+                    }
+                    else
+                    {
+                        row.Cells["imageCol"].Value = imgTreeStudent.Images["stop.png"];
+                    }
+                }
             }
         }
     }

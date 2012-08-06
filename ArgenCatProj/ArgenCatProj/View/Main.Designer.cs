@@ -41,8 +41,12 @@
             this.statusMain = new System.Windows.Forms.StatusStrip();
             this.menuMain = new System.Windows.Forms.MenuStrip();
             this.miFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.miExit = new System.Windows.Forms.ToolStripMenuItem();
             this.imgTreeMain = new System.Windows.Forms.ImageList(this.components);
+            this.miSep1 = new System.Windows.Forms.ToolStripSeparator();
+            this.miFileNew = new System.Windows.Forms.ToolStripMenuItem();
+            this.miFileNewCourse = new System.Windows.Forms.ToolStripMenuItem();
+            this.miFileNewStudent = new System.Windows.Forms.ToolStripMenuItem();
+            this.miExit = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitMain)).BeginInit();
             this.splitMain.Panel1.SuspendLayout();
             this.splitMain.Panel2.SuspendLayout();
@@ -68,7 +72,7 @@
             this.splitMain.Panel2.Controls.Add(this.pnlMainDGV);
             this.splitMain.Panel2.Controls.Add(this.pnlMainSearch);
             this.splitMain.Size = new System.Drawing.Size(779, 401);
-            this.splitMain.SplitterDistance = 258;
+            this.splitMain.SplitterDistance = 134;
             this.splitMain.TabIndex = 8;
             // 
             // treeMain
@@ -79,7 +83,7 @@
             this.treeMain.Location = new System.Drawing.Point(0, 0);
             this.treeMain.Name = "treeMain";
             this.treeMain.SelectedImageIndex = 0;
-            this.treeMain.Size = new System.Drawing.Size(258, 401);
+            this.treeMain.Size = new System.Drawing.Size(134, 401);
             this.treeMain.TabIndex = 0;
             this.treeMain.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeMain_AfterSelect);
             // 
@@ -90,7 +94,7 @@
             this.pnlMainDGV.Location = new System.Drawing.Point(0, 43);
             this.pnlMainDGV.Name = "pnlMainDGV";
             this.pnlMainDGV.Padding = new System.Windows.Forms.Padding(15);
-            this.pnlMainDGV.Size = new System.Drawing.Size(517, 358);
+            this.pnlMainDGV.Size = new System.Drawing.Size(641, 358);
             this.pnlMainDGV.TabIndex = 2;
             // 
             // dgvMain
@@ -108,7 +112,7 @@
             this.dgvMain.ReadOnly = true;
             this.dgvMain.RowHeadersVisible = false;
             this.dgvMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMain.Size = new System.Drawing.Size(487, 328);
+            this.dgvMain.Size = new System.Drawing.Size(611, 328);
             this.dgvMain.TabIndex = 0;
             this.dgvMain.DoubleClick += new System.EventHandler(this.dgvMain_DoubleClick);
             // 
@@ -120,7 +124,7 @@
             this.pnlMainSearch.Location = new System.Drawing.Point(0, 0);
             this.pnlMainSearch.Name = "pnlMainSearch";
             this.pnlMainSearch.Padding = new System.Windows.Forms.Padding(10);
-            this.pnlMainSearch.Size = new System.Drawing.Size(517, 43);
+            this.pnlMainSearch.Size = new System.Drawing.Size(641, 43);
             this.pnlMainSearch.TabIndex = 0;
             // 
             // txtSearch
@@ -128,8 +132,9 @@
             this.txtSearch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtSearch.Location = new System.Drawing.Point(53, 10);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(454, 20);
+            this.txtSearch.Size = new System.Drawing.Size(578, 20);
             this.txtSearch.TabIndex = 5;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // lblSearch
             // 
@@ -170,17 +175,12 @@
             // miFile
             // 
             this.miFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.miFileNew,
+            this.miSep1,
             this.miExit});
             this.miFile.Name = "miFile";
             this.miFile.Size = new System.Drawing.Size(60, 20);
             this.miFile.Text = "Archivo";
-            // 
-            // miExit
-            // 
-            this.miExit.Name = "miExit";
-            this.miExit.Size = new System.Drawing.Size(96, 22);
-            this.miExit.Text = "Salir";
-            this.miExit.Click += new System.EventHandler(this.miExit_Click);
             // 
             // imgTreeMain
             // 
@@ -191,6 +191,42 @@
             this.imgTreeMain.Images.SetKeyName(2, "course_color.png");
             this.imgTreeMain.Images.SetKeyName(3, "show_offliners.png");
             this.imgTreeMain.Images.SetKeyName(4, "edit_user.png");
+            // 
+            // miSep1
+            // 
+            this.miSep1.Name = "miSep1";
+            this.miSep1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // miFileNew
+            // 
+            this.miFileNew.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.miFileNewCourse,
+            this.miFileNewStudent});
+            this.miFileNew.Image = global::ArgenCatProj.Properties.Resources.gnome_document_new;
+            this.miFileNew.Name = "miFileNew";
+            this.miFileNew.Size = new System.Drawing.Size(152, 22);
+            this.miFileNew.Text = "Nuevo";
+            // 
+            // miFileNewCourse
+            // 
+            this.miFileNewCourse.Name = "miFileNewCourse";
+            this.miFileNewCourse.Size = new System.Drawing.Size(152, 22);
+            this.miFileNewCourse.Text = "Curso";
+            this.miFileNewCourse.Click += new System.EventHandler(this.miFileNewCourse_Click);
+            // 
+            // miFileNewStudent
+            // 
+            this.miFileNewStudent.Name = "miFileNewStudent";
+            this.miFileNewStudent.Size = new System.Drawing.Size(152, 22);
+            this.miFileNewStudent.Text = "Estudiante";
+            // 
+            // miExit
+            // 
+            this.miExit.Image = global::ArgenCatProj.Properties.Resources.exit;
+            this.miExit.Name = "miExit";
+            this.miExit.Size = new System.Drawing.Size(152, 22);
+            this.miExit.Text = "Salir";
+            this.miExit.Click += new System.EventHandler(this.miExit_Click);
             // 
             // FMain
             // 
@@ -236,6 +272,10 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label lblSearch;
         private System.Windows.Forms.ImageList imgTreeMain;
+        private System.Windows.Forms.ToolStripMenuItem miFileNew;
+        private System.Windows.Forms.ToolStripMenuItem miFileNewCourse;
+        private System.Windows.Forms.ToolStripMenuItem miFileNewStudent;
+        private System.Windows.Forms.ToolStripSeparator miSep1;
     }
 }
 

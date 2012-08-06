@@ -35,6 +35,8 @@
             this.txtUser = new System.Windows.Forms.TextBox();
             this.lbl_User = new System.Windows.Forms.Label();
             this.lblError = new System.Windows.Forms.Label();
+            this.pboxLogo = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -60,7 +62,7 @@
             // lblPass
             // 
             this.lblPass.AutoSize = true;
-            this.lblPass.Location = new System.Drawing.Point(12, 45);
+            this.lblPass.Location = new System.Drawing.Point(68, 45);
             this.lblPass.Name = "lblPass";
             this.lblPass.Size = new System.Drawing.Size(64, 13);
             this.lblPass.TabIndex = 9;
@@ -68,23 +70,23 @@
             // 
             // txtPass
             // 
-            this.txtPass.Location = new System.Drawing.Point(110, 42);
+            this.txtPass.Location = new System.Drawing.Point(138, 42);
             this.txtPass.Name = "txtPass";
             this.txtPass.PasswordChar = '*';
-            this.txtPass.Size = new System.Drawing.Size(212, 20);
+            this.txtPass.Size = new System.Drawing.Size(184, 20);
             this.txtPass.TabIndex = 8;
             // 
             // txtUser
             // 
-            this.txtUser.Location = new System.Drawing.Point(110, 15);
+            this.txtUser.Location = new System.Drawing.Point(138, 15);
             this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(212, 20);
+            this.txtUser.Size = new System.Drawing.Size(184, 20);
             this.txtUser.TabIndex = 7;
             // 
             // lbl_User
             // 
             this.lbl_User.AutoSize = true;
-            this.lbl_User.Location = new System.Drawing.Point(12, 18);
+            this.lbl_User.Location = new System.Drawing.Point(68, 18);
             this.lbl_User.Name = "lbl_User";
             this.lbl_User.Size = new System.Drawing.Size(46, 13);
             this.lbl_User.TabIndex = 6;
@@ -102,12 +104,23 @@
             this.lblError.Text = "Error:";
             this.lblError.Visible = false;
             // 
+            // pboxLogo
+            // 
+            this.pboxLogo.Image = global::ArgenCatProj.Properties.Resources._lock;
+            this.pboxLogo.Location = new System.Drawing.Point(12, 12);
+            this.pboxLogo.Name = "pboxLogo";
+            this.pboxLogo.Size = new System.Drawing.Size(50, 50);
+            this.pboxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pboxLogo.TabIndex = 13;
+            this.pboxLogo.TabStop = false;
+            // 
             // FLogin
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(334, 135);
+            this.Controls.Add(this.pboxLogo);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
@@ -121,6 +134,7 @@
             this.Name = "FLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
+            ((System.ComponentModel.ISupportInitialize)(this.pboxLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -135,5 +149,6 @@
         private System.Windows.Forms.TextBox txtUser;
         private System.Windows.Forms.Label lbl_User;
         private System.Windows.Forms.Label lblError;
+        private System.Windows.Forms.PictureBox pboxLogo;
     }
 }
