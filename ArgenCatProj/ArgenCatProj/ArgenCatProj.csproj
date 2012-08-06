@@ -52,6 +52,7 @@
     <Compile Include="Controller\Login.cs" />
     <Compile Include="Controller\Main.cs" />
     <Compile Include="Controller\NewCourse.cs" />
+    <Compile Include="Controller\NewStudent.cs" />
     <Compile Include="Controller\Student.cs" />
     <Compile Include="Model\ArgenCatModel.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -78,6 +79,12 @@
     <Compile Include="View\NewCourse.Designer.cs">
       <DependentUpon>NewCourse.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\NewStudent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\NewStudent.Designer.cs">
+      <DependentUpon>NewStudent.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Student.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\NewCourse.resx">
       <DependentUpon>NewCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\NewStudent.resx">
+      <DependentUpon>NewStudent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Student.resx">
       <DependentUpon>Student.cs</DependentUpon>
