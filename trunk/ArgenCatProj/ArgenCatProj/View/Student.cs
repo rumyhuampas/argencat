@@ -76,5 +76,11 @@ namespace ArgenCatProj.View
                 }
             }
         }
+
+        private void miAddCourse_Click(object sender, EventArgs e)
+        {
+            FRegisterStudent regStudent = new FRegisterStudent(_student);
+            regStudent.ShowDialog(this);
+        }
     }
 }

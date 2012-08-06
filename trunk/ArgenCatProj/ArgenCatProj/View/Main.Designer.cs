@@ -240,7 +240,7 @@
             this.Controls.Add(this.menuMain);
             this.Name = "FMain";
             this.ShowInTaskbar = false;
-            this.Text = "Main";
+            this.Text = "ArgenCat";
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.Load += new System.EventHandler(this.FMain_Load);
             this.splitMain.Panel1.ResumeLayout(false);

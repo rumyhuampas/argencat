@@ -268,11 +268,13 @@ namespace ArgenCatProj.Model
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        public static course Createcourse(global::System.Int32 id, global::System.String name)
+        /// <param name="paymentsCount">Initial value of the PaymentsCount property.</param>
+        public static course Createcourse(global::System.Int32 id, global::System.String name, global::System.Int32 paymentsCount)
         {
             course course = new course();
             course.Id = id;
             course.Name = name;
+            course.PaymentsCount = paymentsCount;
             return course;
         }
 
@@ -329,6 +331,30 @@ namespace ArgenCatProj.Model
         private global::System.String _Name;
         partial void OnNameChanging(global::System.String value);
         partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 PaymentsCount
+        {
+            get
+            {
+                return _PaymentsCount;
+            }
+            set
+            {
+                OnPaymentsCountChanging(value);
+                ReportPropertyChanging("PaymentsCount");
+                _PaymentsCount = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PaymentsCount");
+                OnPaymentsCountChanged();
+            }
+        }
+        private global::System.Int32 _PaymentsCount;
+        partial void OnPaymentsCountChanging(global::System.Int32 value);
+        partial void OnPaymentsCountChanged();
 
         #endregion
     

@@ -80,5 +80,12 @@ namespace ArgenCatProj.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        internal static System.Drawing.Bitmap list_add {
+            get {
+                object obj = ResourceManager.GetObject("list_add", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
