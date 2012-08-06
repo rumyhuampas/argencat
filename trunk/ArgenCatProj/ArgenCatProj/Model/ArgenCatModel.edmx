@@ -1,0 +1,456 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="argencatModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="argencatModelStoreContainer">
+          <EntitySet Name="courses" EntityType="argencatModel.Store.courses" store:Type="Tables" Schema="argencat" />
+          <EntitySet Name="paymentplan_payments" EntityType="argencatModel.Store.paymentplan_payments" store:Type="Tables" Schema="argencat" />
+          <EntitySet Name="paymentplans" EntityType="argencatModel.Store.paymentplans" store:Type="Tables" Schema="argencat" />
+          <EntitySet Name="payments" EntityType="argencatModel.Store.payments" store:Type="Tables" Schema="argencat" />
+          <EntitySet Name="student_courses" EntityType="argencatModel.Store.student_courses" store:Type="Tables" Schema="argencat" />
+          <EntitySet Name="students" EntityType="argencatModel.Store.students" store:Type="Tables" Schema="argencat" />
+          <EntitySet Name="users" EntityType="argencatModel.Store.users" store:Type="Tables" Schema="argencat" />
+          <AssociationSet Name="FK_paymentplan_payments_paymentplans" Association="argencatModel.Store.FK_paymentplan_payments_paymentplans">
+            <End Role="paymentplans" EntitySet="paymentplans" />
+            <End Role="paymentplan_payments" EntitySet="paymentplan_payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_paymentplan_payments_payments" Association="argencatModel.Store.FK_paymentplan_payments_payments">
+            <End Role="payments" EntitySet="payments" />
+            <End Role="paymentplan_payments" EntitySet="paymentplan_payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_student_courses_courses" Association="argencatModel.Store.FK_student_courses_courses">
+            <End Role="courses" EntitySet="courses" />
+            <End Role="student_courses" EntitySet="student_courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_student_courses_paymentplans" Association="argencatModel.Store.FK_student_courses_paymentplans">
+            <End Role="paymentplans" EntitySet="paymentplans" />
+            <End Role="student_courses" EntitySet="student_courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_student_courses_students" Association="argencatModel.Store.FK_student_courses_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="student_courses" EntitySet="student_courses" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="courses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="paymentplan_payments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentPlanId" Type="int" Nullable="false" />
+          <Property Name="PaymentId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="paymentplans">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="payments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="Payed" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="float" />
+          <Property Name="DatePayed" Type="datetime" />
+          <Property Name="RecipNumber" Type="int" />
+        </EntityType>
+        <EntityType Name="student_courses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="studentId" Type="int" Nullable="false" />
+          <Property Name="paymentPlanId" Type="int" Nullable="false" />
+          <Property Name="courseId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="students">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Dni" Type="varchar" Nullable="false" MaxLength="8" />
+          <Property Name="Address" Type="varchar" MaxLength="255" />
+          <Property Name="Phone" Type="varchar" MaxLength="15" />
+          <Property Name="Phone2" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Pass" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_paymentplan_payments_paymentplans">
+          <End Role="paymentplans" Type="argencatModel.Store.paymentplans" Multiplicity="1" />
+          <End Role="paymentplan_payments" Type="argencatModel.Store.paymentplan_payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="paymentplans">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="paymentplan_payments">
+              <PropertyRef Name="PaymentPlanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_paymentplan_payments_payments">
+          <End Role="payments" Type="argencatModel.Store.payments" Multiplicity="1" />
+          <End Role="paymentplan_payments" Type="argencatModel.Store.paymentplan_payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="payments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="paymentplan_payments">
+              <PropertyRef Name="PaymentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_student_courses_courses">
+          <End Role="courses" Type="argencatModel.Store.courses" Multiplicity="1" />
+          <End Role="student_courses" Type="argencatModel.Store.student_courses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="courses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="student_courses">
+              <PropertyRef Name="courseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_student_courses_paymentplans">
+          <End Role="paymentplans" Type="argencatModel.Store.paymentplans" Multiplicity="1" />
+          <End Role="student_courses" Type="argencatModel.Store.student_courses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="paymentplans">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="student_courses">
+              <PropertyRef Name="paymentPlanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_student_courses_students">
+          <End Role="students" Type="argencatModel.Store.students" Multiplicity="1" />
+          <End Role="student_courses" Type="argencatModel.Store.student_courses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="student_courses">
+              <PropertyRef Name="studentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="argencatModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="argencatEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="courses" EntityType="argencatModel.course" />
+          <EntitySet Name="paymentplan_payments" EntityType="argencatModel.paymentplan_payments" />
+          <EntitySet Name="paymentplans" EntityType="argencatModel.paymentplan" />
+          <EntitySet Name="payments" EntityType="argencatModel.payment" />
+          <EntitySet Name="student_courses" EntityType="argencatModel.student_courses" />
+          <EntitySet Name="students" EntityType="argencatModel.student" />
+          <EntitySet Name="users" EntityType="argencatModel.user" />
+          <AssociationSet Name="FK_student_courses_courses" Association="argencatModel.FK_student_courses_courses">
+            <End Role="cours" EntitySet="courses" />
+            <End Role="student_courses" EntitySet="student_courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_paymentplan_payments_paymentplans" Association="argencatModel.FK_paymentplan_payments_paymentplans">
+            <End Role="paymentplan" EntitySet="paymentplans" />
+            <End Role="paymentplan_payments" EntitySet="paymentplan_payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_paymentplan_payments_payments" Association="argencatModel.FK_paymentplan_payments_payments">
+            <End Role="payment" EntitySet="payments" />
+            <End Role="paymentplan_payments" EntitySet="paymentplan_payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_student_courses_paymentplans" Association="argencatModel.FK_student_courses_paymentplans">
+            <End Role="paymentplan" EntitySet="paymentplans" />
+            <End Role="student_courses" EntitySet="student_courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_student_courses_students" Association="argencatModel.FK_student_courses_students">
+            <End Role="student" EntitySet="students" />
+            <End Role="student_courses" EntitySet="student_courses" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="course">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <NavigationProperty Name="student_courses" Relationship="argencatModel.FK_student_courses_courses" FromRole="cours" ToRole="student_courses" />
+        </EntityType>
+        <EntityType Name="paymentplan_payments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="PaymentPlanId" Nullable="false" />
+          <Property Type="Int32" Name="PaymentId" Nullable="false" />
+          <NavigationProperty Name="paymentplan" Relationship="argencatModel.FK_paymentplan_payments_paymentplans" FromRole="paymentplan_payments" ToRole="paymentplan" />
+          <NavigationProperty Name="payment" Relationship="argencatModel.FK_paymentplan_payments_payments" FromRole="paymentplan_payments" ToRole="payment" />
+        </EntityType>
+        <EntityType Name="paymentplan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="paymentplan_payments" Relationship="argencatModel.FK_paymentplan_payments_paymentplans" FromRole="paymentplan" ToRole="paymentplan_payments" />
+          <NavigationProperty Name="student_courses" Relationship="argencatModel.FK_student_courses_paymentplans" FromRole="paymentplan" ToRole="student_courses" />
+        </EntityType>
+        <EntityType Name="payment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="Number" Nullable="false" />
+          <Property Type="Int32" Name="Payed" Nullable="false" />
+          <Property Type="Single" Name="Amount" />
+          <Property Type="DateTime" Name="DatePayed" />
+          <Property Type="Int32" Name="RecipNumber" />
+          <NavigationProperty Name="paymentplan_payments" Relationship="argencatModel.FK_paymentplan_payments_payments" FromRole="payment" ToRole="paymentplan_payments" />
+        </EntityType>
+        <EntityType Name="student_courses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="studentId" Nullable="false" />
+          <Property Type="Int32" Name="paymentPlanId" Nullable="false" />
+          <Property Type="Int32" Name="courseId" Nullable="false" />
+          <NavigationProperty Name="course" Relationship="argencatModel.FK_student_courses_courses" FromRole="student_courses" ToRole="cours" />
+          <NavigationProperty Name="paymentplan" Relationship="argencatModel.FK_student_courses_paymentplans" FromRole="student_courses" ToRole="paymentplan" />
+          <NavigationProperty Name="student" Relationship="argencatModel.FK_student_courses_students" FromRole="student_courses" ToRole="student" />
+        </EntityType>
+        <EntityType Name="student">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="Number" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="Dni" Nullable="false" />
+          <Property Type="String" Name="Address" />
+          <Property Type="String" Name="Phone" />
+          <Property Type="String" Name="Phone2" />
+          <NavigationProperty Name="student_courses" Relationship="argencatModel.FK_student_courses_students" FromRole="student" ToRole="student_courses" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="Pass" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_student_courses_courses">
+          <End Type="argencatModel.course" Role="cours" Multiplicity="1" />
+          <End Type="argencatModel.student_courses" Role="student_courses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cours">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="student_courses">
+              <PropertyRef Name="courseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_paymentplan_payments_paymentplans">
+          <End Type="argencatModel.paymentplan" Role="paymentplan" Multiplicity="1" />
+          <End Type="argencatModel.paymentplan_payments" Role="paymentplan_payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="paymentplan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="paymentplan_payments">
+              <PropertyRef Name="PaymentPlanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_paymentplan_payments_payments">
+          <End Type="argencatModel.payment" Role="payment" Multiplicity="1" />
+          <End Type="argencatModel.paymentplan_payments" Role="paymentplan_payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="payment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="paymentplan_payments">
+              <PropertyRef Name="PaymentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_student_courses_paymentplans">
+          <End Type="argencatModel.paymentplan" Role="paymentplan" Multiplicity="1" />
+          <End Type="argencatModel.student_courses" Role="student_courses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="paymentplan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="student_courses">
+              <PropertyRef Name="paymentPlanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_student_courses_students">
+          <End Type="argencatModel.student" Role="student" Multiplicity="1" />
+          <End Type="argencatModel.student_courses" Role="student_courses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="student_courses">
+              <PropertyRef Name="studentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="argencatModelStoreContainer" CdmEntityContainer="argencatEntities">
+          <EntitySetMapping Name="courses">
+            <EntityTypeMapping TypeName="argencatModel.course">
+              <MappingFragment StoreEntitySet="courses">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="paymentplan_payments">
+            <EntityTypeMapping TypeName="argencatModel.paymentplan_payments">
+              <MappingFragment StoreEntitySet="paymentplan_payments">
+                <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
+                <ScalarProperty Name="PaymentPlanId" ColumnName="PaymentPlanId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="paymentplans">
+            <EntityTypeMapping TypeName="argencatModel.paymentplan">
+              <MappingFragment StoreEntitySet="paymentplans">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="payments">
+            <EntityTypeMapping TypeName="argencatModel.payment">
+              <MappingFragment StoreEntitySet="payments">
+                <ScalarProperty Name="RecipNumber" ColumnName="RecipNumber" />
+                <ScalarProperty Name="DatePayed" ColumnName="DatePayed" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Payed" ColumnName="Payed" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="student_courses">
+            <EntityTypeMapping TypeName="argencatModel.student_courses">
+              <MappingFragment StoreEntitySet="student_courses">
+                <ScalarProperty Name="courseId" ColumnName="courseId" />
+                <ScalarProperty Name="paymentPlanId" ColumnName="paymentPlanId" />
+                <ScalarProperty Name="studentId" ColumnName="studentId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="students">
+            <EntityTypeMapping TypeName="argencatModel.student">
+              <MappingFragment StoreEntitySet="students">
+                <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Dni" ColumnName="Dni" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="argencatModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="ArgenCatModel">
+        <EntityTypeShape EntityType="argencatModel.course" Width="1.5" PointX="0.75" PointY="1.25" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="argencatModel.paymentplan_payments" Width="1.5" PointX="3" PointY="4" Height="1.9802864583333353" />
+        <EntityTypeShape EntityType="argencatModel.paymentplan" Width="1.5" PointX="0.75" PointY="4.125" Height="1.5956835937500031" />
+        <EntityTypeShape EntityType="argencatModel.payment" Width="1.5" PointX="0.75" PointY="10.75" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="argencatModel.student_courses" Width="1.5" PointX="3" PointY="0.75" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="argencatModel.student" Width="1.5" PointX="0.75" PointY="6.625" Height="2.5571907552083388" />
+        <EntityTypeShape EntityType="argencatModel.user" Width="1.5" PointX="5.75" PointY="2" Height="1.5956835937500031" />
+        <AssociationConnector Association="argencatModel.FK_student_courses_courses" >
+          <ConnectorPoint PointX="2.25" PointY="2.047841796875" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="2.0478417968749993" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="2.047841796875" />
+          <ConnectorPoint PointX="3" PointY="2.047841796875" />
+        </AssociationConnector>
+        <AssociationConnector Association="argencatModel.FK_paymentplan_payments_paymentplans" >
+          <ConnectorPoint PointX="2.25" PointY="4.9228417968750016" />
+          <ConnectorPoint PointX="2.7291666666666665" PointY="4.9228417968750007" />
+          <ConnectorPoint PointX="2.8958333333333335" PointY="4.9228417968750016" />
+          <ConnectorPoint PointX="3" PointY="4.9228417968750016" />
+        </AssociationConnector>
+        <AssociationConnector Association="argencatModel.FK_paymentplan_payments_payments" >
+          <ConnectorPoint PointX="2.25" PointY="11.932444661458334" />
+          <ConnectorPoint PointX="3.75" PointY="11.932444661458334" />
+          <ConnectorPoint PointX="3.75" PointY="5.9802864583333353" />
+        </AssociationConnector>
+        <AssociationConnector Association="argencatModel.FK_student_courses_paymentplans" >
+          <ConnectorPoint PointX="2.25" PointY="4.125" />
+          <ConnectorPoint PointX="2.625" PointY="3.75" />
+          <ConnectorPoint PointX="2.625" PointY="1.3676688984374992" />
+          <ConnectorPoint PointX="3" PointY="1.3676688984374992" />
+        </AssociationConnector>
+        <AssociationConnector Association="argencatModel.FK_student_courses_students" >
+          <ConnectorPoint PointX="2.25" PointY="6.6873066923076925" />
+          <ConnectorPoint PointX="2.8125" PointY="6.1248066923076934" />
+          <ConnectorPoint PointX="2.8125" PointY="2.6126175598958343" />
+          <ConnectorPoint PointX="3" PointY="2.6126175598958343" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
