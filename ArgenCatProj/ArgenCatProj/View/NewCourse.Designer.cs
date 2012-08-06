@@ -29,23 +29,35 @@
         private void InitializeComponent()
         {
             this.gboxData = new System.Windows.Forms.GroupBox();
-            this.lblName = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
+            this.lblName = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.lblPCount = new System.Windows.Forms.Label();
+            this.nudPCount = new System.Windows.Forms.NumericUpDown();
             this.gboxData.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPCount)).BeginInit();
             this.SuspendLayout();
             // 
             // gboxData
             // 
+            this.gboxData.Controls.Add(this.nudPCount);
+            this.gboxData.Controls.Add(this.lblPCount);
             this.gboxData.Controls.Add(this.txtName);
             this.gboxData.Controls.Add(this.lblName);
             this.gboxData.Location = new System.Drawing.Point(12, 12);
             this.gboxData.Name = "gboxData";
-            this.gboxData.Size = new System.Drawing.Size(293, 54);
+            this.gboxData.Size = new System.Drawing.Size(293, 80);
             this.gboxData.TabIndex = 0;
             this.gboxData.TabStop = false;
             this.gboxData.Text = "Datos";
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(114, 19);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(173, 20);
+            this.txtName.TabIndex = 1;
             // 
             // lblName
             // 
@@ -56,16 +68,9 @@
             this.lblName.TabIndex = 0;
             this.lblName.Text = "Nombre:";
             // 
-            // txtName
-            // 
-            this.txtName.Location = new System.Drawing.Point(59, 19);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(228, 20);
-            this.txtName.TabIndex = 1;
-            // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(149, 83);
+            this.btnOK.Location = new System.Drawing.Point(149, 98);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 1;
@@ -75,7 +80,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(230, 83);
+            this.btnCancel.Location = new System.Drawing.Point(230, 98);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 2;
@@ -83,11 +88,27 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // lblPCount
+            // 
+            this.lblPCount.AutoSize = true;
+            this.lblPCount.Location = new System.Drawing.Point(6, 47);
+            this.lblPCount.Name = "lblPCount";
+            this.lblPCount.Size = new System.Drawing.Size(102, 13);
+            this.lblPCount.TabIndex = 2;
+            this.lblPCount.Text = "Cantidad de coutas:";
+            // 
+            // nudPCount
+            // 
+            this.nudPCount.Location = new System.Drawing.Point(114, 45);
+            this.nudPCount.Name = "nudPCount";
+            this.nudPCount.Size = new System.Drawing.Size(46, 20);
+            this.nudPCount.TabIndex = 3;
+            // 
             // FNewCourse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(317, 118);
+            this.ClientSize = new System.Drawing.Size(317, 133);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.gboxData);
@@ -99,6 +120,7 @@
             this.Text = "Nuevo Curso";
             this.gboxData.ResumeLayout(false);
             this.gboxData.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPCount)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -110,5 +132,7 @@
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.NumericUpDown nudPCount;
+        private System.Windows.Forms.Label lblPCount;
     }
 }

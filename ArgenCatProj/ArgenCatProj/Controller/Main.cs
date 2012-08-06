@@ -33,7 +33,7 @@ namespace ArgenCatProj.Controller
             {
                 return from courses in _db.courses
                        where courses.Name.Contains(filter)
-                       select new { courses.Id, courses.Name };
+                       select new { courses.Id, courses.Name, courses.PaymentsCount };
             }
             if (type == FMain.STUDENTS)
             {

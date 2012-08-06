@@ -40,6 +40,7 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="PaymentsCount" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="paymentplan_payments">
           <Key>
@@ -195,6 +196,7 @@
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" Nullable="false" />
           <NavigationProperty Name="student_courses" Relationship="argencatModel.FK_student_courses_courses" FromRole="cours" ToRole="student_courses" />
+          <Property Type="Int32" Name="PaymentsCount" Nullable="false" />
         </EntityType>
         <EntityType Name="paymentplan_payments">
           <Key>
@@ -328,6 +330,7 @@
           <EntitySetMapping Name="courses">
             <EntityTypeMapping TypeName="argencatModel.course">
               <MappingFragment StoreEntitySet="courses">
+                <ScalarProperty Name="PaymentsCount" ColumnName="PaymentsCount" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

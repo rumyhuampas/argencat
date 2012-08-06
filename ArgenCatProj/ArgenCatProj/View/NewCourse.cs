@@ -27,9 +27,10 @@ namespace ArgenCatProj.View
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (_controller.CheckFields(txtName.Text))
+            if (_controller.CheckFields(txtName.Text, nudPCount.Value))
             {
-                if(_controller.SaveCourse(txtName.Text)){
+                if (_controller.SaveCourse(txtName.Text, nudPCount.Value))
+                {
                     if (MessageBox.Show("Curso guardado. Desea guardar otro?", "Nuevo Curso",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                     {

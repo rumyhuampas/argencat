@@ -45,14 +45,18 @@
             this.lblNumber = new System.Windows.Forms.Label();
             this.splitStudent = new System.Windows.Forms.SplitContainer();
             this.treeStudent = new System.Windows.Forms.TreeView();
-            this.dgvStudent = new System.Windows.Forms.DataGridView();
             this.imgTreeStudent = new System.Windows.Forms.ImageList(this.components);
+            this.dgvStudent = new System.Windows.Forms.DataGridView();
+            this.cmenuTreeStudent = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.miAddCourse = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStudent = new System.Windows.Forms.StatusStrip();
             this.gboxStudentData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitStudent)).BeginInit();
             this.splitStudent.Panel1.SuspendLayout();
             this.splitStudent.Panel2.SuspendLayout();
             this.splitStudent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudent)).BeginInit();
+            this.cmenuTreeStudent.SuspendLayout();
             this.SuspendLayout();
             // 
             // gboxStudentData
@@ -192,21 +196,33 @@
             // splitStudent.Panel2
             // 
             this.splitStudent.Panel2.Controls.Add(this.dgvStudent);
-            this.splitStudent.Size = new System.Drawing.Size(664, 286);
+            this.splitStudent.Size = new System.Drawing.Size(664, 264);
             this.splitStudent.SplitterDistance = 221;
             this.splitStudent.TabIndex = 1;
             // 
             // treeStudent
             // 
+            this.treeStudent.ContextMenuStrip = this.cmenuTreeStudent;
             this.treeStudent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeStudent.ImageIndex = 0;
             this.treeStudent.ImageList = this.imgTreeStudent;
             this.treeStudent.Location = new System.Drawing.Point(0, 0);
             this.treeStudent.Name = "treeStudent";
             this.treeStudent.SelectedImageIndex = 0;
-            this.treeStudent.Size = new System.Drawing.Size(221, 286);
+            this.treeStudent.Size = new System.Drawing.Size(221, 264);
             this.treeStudent.TabIndex = 0;
             this.treeStudent.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeStudent_AfterSelect);
+            // 
+            // imgTreeStudent
+            // 
+            this.imgTreeStudent.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgTreeStudent.ImageStream")));
+            this.imgTreeStudent.TransparentColor = System.Drawing.Color.Transparent;
+            this.imgTreeStudent.Images.SetKeyName(0, "couse_grey.png");
+            this.imgTreeStudent.Images.SetKeyName(1, "course_color.png");
+            this.imgTreeStudent.Images.SetKeyName(2, "control_play.png");
+            this.imgTreeStudent.Images.SetKeyName(3, "control_play_blue.png");
+            this.imgTreeStudent.Images.SetKeyName(4, "select.png");
+            this.imgTreeStudent.Images.SetKeyName(5, "stop.png");
             // 
             // dgvStudent
             // 
@@ -223,19 +239,31 @@
             this.dgvStudent.ReadOnly = true;
             this.dgvStudent.RowHeadersVisible = false;
             this.dgvStudent.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvStudent.Size = new System.Drawing.Size(439, 286);
+            this.dgvStudent.Size = new System.Drawing.Size(439, 264);
             this.dgvStudent.TabIndex = 0;
             // 
-            // imgTreeStudent
+            // cmenuTreeStudent
             // 
-            this.imgTreeStudent.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgTreeStudent.ImageStream")));
-            this.imgTreeStudent.TransparentColor = System.Drawing.Color.Transparent;
-            this.imgTreeStudent.Images.SetKeyName(0, "couse_grey.png");
-            this.imgTreeStudent.Images.SetKeyName(1, "course_color.png");
-            this.imgTreeStudent.Images.SetKeyName(2, "control_play.png");
-            this.imgTreeStudent.Images.SetKeyName(3, "control_play_blue.png");
-            this.imgTreeStudent.Images.SetKeyName(4, "select.png");
-            this.imgTreeStudent.Images.SetKeyName(5, "stop.png");
+            this.cmenuTreeStudent.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.miAddCourse});
+            this.cmenuTreeStudent.Name = "cmenuTreeStudent";
+            this.cmenuTreeStudent.Size = new System.Drawing.Size(160, 26);
+            // 
+            // miAddCourse
+            // 
+            this.miAddCourse.Image = global::ArgenCatProj.Properties.Resources.list_add;
+            this.miAddCourse.Name = "miAddCourse";
+            this.miAddCourse.Size = new System.Drawing.Size(159, 22);
+            this.miAddCourse.Text = "Inscribir a Curso";
+            this.miAddCourse.Click += new System.EventHandler(this.miAddCourse_Click);
+            // 
+            // statusStudent
+            // 
+            this.statusStudent.Location = new System.Drawing.Point(10, 380);
+            this.statusStudent.Name = "statusStudent";
+            this.statusStudent.Size = new System.Drawing.Size(664, 22);
+            this.statusStudent.TabIndex = 3;
+            this.statusStudent.Text = "statusStrip1";
             // 
             // FStudent
             // 
@@ -244,10 +272,12 @@
             this.ClientSize = new System.Drawing.Size(684, 412);
             this.Controls.Add(this.splitStudent);
             this.Controls.Add(this.gboxStudentData);
+            this.Controls.Add(this.statusStudent);
             this.MinimumSize = new System.Drawing.Size(700, 450);
             this.Name = "FStudent";
             this.Padding = new System.Windows.Forms.Padding(10);
-            this.Text = "Student";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Estudiante";
             this.Load += new System.EventHandler(this.FStudent_Load);
             this.gboxStudentData.ResumeLayout(false);
             this.gboxStudentData.PerformLayout();
@@ -256,7 +286,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitStudent)).EndInit();
             this.splitStudent.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudent)).EndInit();
+            this.cmenuTreeStudent.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -279,5 +311,8 @@
         private System.Windows.Forms.TextBox txtNumber;
         private System.Windows.Forms.Label lblNumber;
         private System.Windows.Forms.ImageList imgTreeStudent;
+        private System.Windows.Forms.ContextMenuStrip cmenuTreeStudent;
+        private System.Windows.Forms.ToolStripMenuItem miAddCourse;
+        private System.Windows.Forms.StatusStrip statusStudent;
     }
 }
