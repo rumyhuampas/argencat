@@ -12,12 +12,12 @@ namespace ArgenCatProj.View
 {
     public partial class FNewCourse : Form
     {
-        private NewCourse controller;
+        private NewCourse _controller;
 
         public FNewCourse()
         {
             InitializeComponent();
-            controller = new NewCourse();
+            _controller = new NewCourse();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -27,9 +27,9 @@ namespace ArgenCatProj.View
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (controller.CheckFields(txtName.Text))
+            if (_controller.CheckFields(txtName.Text))
             {
-                if(controller.SaveCourse(txtName.Text)){
+                if(_controller.SaveCourse(txtName.Text)){
                     if (MessageBox.Show("Curso guardado. Desea guardar otro?", "Nuevo Curso",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                     {

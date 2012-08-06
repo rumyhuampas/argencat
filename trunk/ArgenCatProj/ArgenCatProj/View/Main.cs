@@ -95,5 +95,12 @@ namespace ArgenCatProj
             newcourse.ShowDialog(this);
             treeMain_AfterSelect(this, new TreeViewEventArgs(treeMain.Nodes[0].Nodes[0]));
         }
+
+        private void miFileNewStudent_Click(object sender, EventArgs e)
+        {
+            FNewStudent newstudent = new FNewStudent();
+            newstudent.ShowDialog(this);
+            treeMain_AfterSelect(this, new TreeViewEventArgs(treeMain.Nodes[0].Nodes[1]));
+        }
     }
 }

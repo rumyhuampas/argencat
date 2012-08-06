@@ -219,6 +219,7 @@
             this.miFileNewStudent.Name = "miFileNewStudent";
             this.miFileNewStudent.Size = new System.Drawing.Size(152, 22);
             this.miFileNewStudent.Text = "Estudiante";
+            this.miFileNewStudent.Click += new System.EventHandler(this.miFileNewStudent_Click);
             // 
             // miExit
             // 
