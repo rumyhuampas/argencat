@@ -3,44 +3,53 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ArgenCatProj.Model;
+using System.Collections;
+using System.Data.Objects.SqlClient;
 
 namespace ArgenCatProj.Controller
 {
     public class Main
     {
         private argencatEntities _db;
-        private IEnumerable<dynamic> _courses;
-        private IEnumerable<dynamic> _students;
 
         public Main()
         {
             _db = new argencatEntities();
-            _courses = from courses in _db.courses
-                        select new {courses.Id, courses.Name} ;
-            _students = (from students in _db.students
-                         select new { students.Id, students.Number, students.Name, students.Dni, 
-                             students.Phone, students.Phone2, students.Address }).OrderBy(model => model.Name);
         }
 
         public IEnumerable<dynamic> GetAllCurses()
         {
-            return _courses;
+            return GetData(FMain.COURSES, "");
         }
 
         public IEnumerable<dynamic> GetAllStudents()
         {
-            return _students;
+            return GetData(FMain.STUDENTS, "");
         }
 
-        public IEnumerable<dynamic> FilterList(string type, string filter)
+        public IEnumerable<dynamic> GetData(string type, string filter)
         {
             if (type == FMain.COURSES)
             {
-                return _courses.Where(model => model.Name.Contains(filter));
+                return from courses in _db.courses
+                       where courses.Name.Contains(filter)
+                       select new { courses.Id, courses.Name };
             }
             if (type == FMain.STUDENTS)
             {
-                return _students.Where(model => model.Name.Contains(filter));
+                return from students in _db.students
+                       where students.Name.Contains(filter) ||
+                       students.Dni.Contains(filter)
+                       select new
+                       {
+                           students.Id,
+                           students.Number,
+                           students.Name,
+                           students.Dni,
+                           students.Phone,
+                           students.Phone2,
+                           students.Address
+                       };
             }
             return null;
         }

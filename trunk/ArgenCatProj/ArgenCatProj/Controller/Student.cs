@@ -18,13 +18,13 @@ namespace ArgenCatProj.Controller
             _student = stdnt;
         }
 
-        public IQueryable<payment> GetCursePayments(string CurseName)
+        public IEnumerable<dynamic> GetCursePayments(string CurseName)
         {
             student_courses currentStudentCurse = _student.student_courses.Where(model=>model.course.Name == CurseName).First();
             return from planpayments in _db.paymentplan_payments
-                    join payments in _db.payments on planpayments.PaymentId equals payments.Id
-                    where planpayments.PaymentPlanId == currentStudentCurse.paymentPlanId
-                    select payments;
+                   join payments in _db.payments on planpayments.PaymentId equals payments.Id
+                   where planpayments.PaymentPlanId == currentStudentCurse.paymentPlanId
+                   select new { payments.Id, payments.Payed, payments.Number, payments.RecipNumber, payments.Amount, payments.DatePayed };
         }
     }
 }

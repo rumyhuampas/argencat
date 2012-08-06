@@ -66,6 +66,7 @@ namespace ArgenCatProj
             {
                 dgvMain.DataSource = _controller.GetAllStudents();
             }
+            dgvMain.Columns[0].Visible = false;
         }
 
         private void miExit_Click(object sender, EventArgs e)
@@ -75,8 +76,8 @@ namespace ArgenCatProj
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            dgvMain.DataSource = _controller.FilterList(treeMain.SelectedNode.Text, txtSearch.Text);
-            dgvMain.Columns[1].Visible = false;
+            dgvMain.DataSource = _controller.GetData(treeMain.SelectedNode.Text, txtSearch.Text);
+            dgvMain.Columns[0].Visible = false;
         }
 
         private void dgvMain_DoubleClick(object sender, EventArgs e)
@@ -86,6 +87,13 @@ namespace ArgenCatProj
                 FStudent student = new FStudent(_controller.GetStudent(Convert.ToInt32(dgvMain.SelectedRows[0].Cells[0].Value)));
                 student.ShowDialog(this);
             }
+        }
+
+        private void miFileNewCourse_Click(object sender, EventArgs e)
+        {
+            FNewCourse newcourse = new FNewCourse();
+            newcourse.ShowDialog(this);
+            treeMain_AfterSelect(this, new TreeViewEventArgs(treeMain.Nodes[0].Nodes[0]));
         }
     }
 }

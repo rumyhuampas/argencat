@@ -234,6 +234,8 @@
             this.imgTreeStudent.Images.SetKeyName(1, "course_color.png");
             this.imgTreeStudent.Images.SetKeyName(2, "control_play.png");
             this.imgTreeStudent.Images.SetKeyName(3, "control_play_blue.png");
+            this.imgTreeStudent.Images.SetKeyName(4, "select.png");
+            this.imgTreeStudent.Images.SetKeyName(5, "stop.png");
             // 
             // FStudent
             // 
