@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.gboxData = new System.Windows.Forms.GroupBox();
+            this.nudPCount = new System.Windows.Forms.NumericUpDown();
+            this.lblPCount = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.lblPCount = new System.Windows.Forms.Label();
-            this.nudPCount = new System.Windows.Forms.NumericUpDown();
             this.gboxData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPCount)).BeginInit();
             this.SuspendLayout();
@@ -51,6 +51,22 @@
             this.gboxData.TabIndex = 0;
             this.gboxData.TabStop = false;
             this.gboxData.Text = "Datos";
+            // 
+            // nudPCount
+            // 
+            this.nudPCount.Location = new System.Drawing.Point(114, 45);
+            this.nudPCount.Name = "nudPCount";
+            this.nudPCount.Size = new System.Drawing.Size(46, 20);
+            this.nudPCount.TabIndex = 3;
+            // 
+            // lblPCount
+            // 
+            this.lblPCount.AutoSize = true;
+            this.lblPCount.Location = new System.Drawing.Point(6, 47);
+            this.lblPCount.Name = "lblPCount";
+            this.lblPCount.Size = new System.Drawing.Size(102, 13);
+            this.lblPCount.TabIndex = 2;
+            this.lblPCount.Text = "Cantidad de coutas:";
             // 
             // txtName
             // 
@@ -87,22 +103,6 @@
             this.btnCancel.Text = "Cancelar";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // lblPCount
-            // 
-            this.lblPCount.AutoSize = true;
-            this.lblPCount.Location = new System.Drawing.Point(6, 47);
-            this.lblPCount.Name = "lblPCount";
-            this.lblPCount.Size = new System.Drawing.Size(102, 13);
-            this.lblPCount.TabIndex = 2;
-            this.lblPCount.Text = "Cantidad de coutas:";
-            // 
-            // nudPCount
-            // 
-            this.nudPCount.Location = new System.Drawing.Point(114, 45);
-            this.nudPCount.Name = "nudPCount";
-            this.nudPCount.Size = new System.Drawing.Size(46, 20);
-            this.nudPCount.TabIndex = 3;
             // 
             // FNewCourse
             // 

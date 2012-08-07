@@ -19,7 +19,7 @@ namespace ArgenCatProj.View
         public FRegisterStudent(student stdnt)
         {
             InitializeComponent();
-            _controller = new RegisterStudent(stdnt);
+            _controller = new RegisterStudent();
             _student = stdnt;
         }
 
@@ -39,8 +39,9 @@ namespace ArgenCatProj.View
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (_controller.Register(cboxCourses.SelectedItem.ToString()))
+            if (_controller.Register(_student, cboxCourses.SelectedItem.ToString()))
             {
+                _student = _controller.GetStudentData(_student.Id);
                 if (MessageBox.Show("Estudiante inscripto. Desea inscribir el estudiante a otro curso?", "Inscribir a Curso",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
                 {

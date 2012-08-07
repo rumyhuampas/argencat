@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FMain));
             this.splitMain = new System.Windows.Forms.SplitContainer();
             this.treeMain = new System.Windows.Forms.TreeView();
+            this.imgTreeMain = new System.Windows.Forms.ImageList(this.components);
             this.pnlMainDGV = new System.Windows.Forms.Panel();
             this.dgvMain = new System.Windows.Forms.DataGridView();
             this.pnlMainSearch = new System.Windows.Forms.Panel();
@@ -41,11 +42,10 @@
             this.statusMain = new System.Windows.Forms.StatusStrip();
             this.menuMain = new System.Windows.Forms.MenuStrip();
             this.miFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.imgTreeMain = new System.Windows.Forms.ImageList(this.components);
-            this.miSep1 = new System.Windows.Forms.ToolStripSeparator();
             this.miFileNew = new System.Windows.Forms.ToolStripMenuItem();
             this.miFileNewCourse = new System.Windows.Forms.ToolStripMenuItem();
             this.miFileNewStudent = new System.Windows.Forms.ToolStripMenuItem();
+            this.miSep1 = new System.Windows.Forms.ToolStripSeparator();
             this.miExit = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitMain)).BeginInit();
             this.splitMain.Panel1.SuspendLayout();
@@ -86,6 +86,16 @@
             this.treeMain.Size = new System.Drawing.Size(134, 401);
             this.treeMain.TabIndex = 0;
             this.treeMain.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeMain_AfterSelect);
+            // 
+            // imgTreeMain
+            // 
+            this.imgTreeMain.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgTreeMain.ImageStream")));
+            this.imgTreeMain.TransparentColor = System.Drawing.Color.Transparent;
+            this.imgTreeMain.Images.SetKeyName(0, "home.png");
+            this.imgTreeMain.Images.SetKeyName(1, "couse_grey.png");
+            this.imgTreeMain.Images.SetKeyName(2, "course_color.png");
+            this.imgTreeMain.Images.SetKeyName(3, "show_offliners.png");
+            this.imgTreeMain.Images.SetKeyName(4, "edit_user.png");
             // 
             // pnlMainDGV
             // 
@@ -182,21 +192,6 @@
             this.miFile.Size = new System.Drawing.Size(60, 20);
             this.miFile.Text = "Archivo";
             // 
-            // imgTreeMain
-            // 
-            this.imgTreeMain.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgTreeMain.ImageStream")));
-            this.imgTreeMain.TransparentColor = System.Drawing.Color.Transparent;
-            this.imgTreeMain.Images.SetKeyName(0, "home.png");
-            this.imgTreeMain.Images.SetKeyName(1, "couse_grey.png");
-            this.imgTreeMain.Images.SetKeyName(2, "course_color.png");
-            this.imgTreeMain.Images.SetKeyName(3, "show_offliners.png");
-            this.imgTreeMain.Images.SetKeyName(4, "edit_user.png");
-            // 
-            // miSep1
-            // 
-            this.miSep1.Name = "miSep1";
-            this.miSep1.Size = new System.Drawing.Size(149, 6);
-            // 
             // miFileNew
             // 
             this.miFileNew.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -204,28 +199,33 @@
             this.miFileNewStudent});
             this.miFileNew.Image = global::ArgenCatProj.Properties.Resources.gnome_document_new;
             this.miFileNew.Name = "miFileNew";
-            this.miFileNew.Size = new System.Drawing.Size(152, 22);
+            this.miFileNew.Size = new System.Drawing.Size(109, 22);
             this.miFileNew.Text = "Nuevo";
             // 
             // miFileNewCourse
             // 
             this.miFileNewCourse.Name = "miFileNewCourse";
-            this.miFileNewCourse.Size = new System.Drawing.Size(152, 22);
+            this.miFileNewCourse.Size = new System.Drawing.Size(129, 22);
             this.miFileNewCourse.Text = "Curso";
             this.miFileNewCourse.Click += new System.EventHandler(this.miFileNewCourse_Click);
             // 
             // miFileNewStudent
             // 
             this.miFileNewStudent.Name = "miFileNewStudent";
-            this.miFileNewStudent.Size = new System.Drawing.Size(152, 22);
+            this.miFileNewStudent.Size = new System.Drawing.Size(129, 22);
             this.miFileNewStudent.Text = "Estudiante";
             this.miFileNewStudent.Click += new System.EventHandler(this.miFileNewStudent_Click);
+            // 
+            // miSep1
+            // 
+            this.miSep1.Name = "miSep1";
+            this.miSep1.Size = new System.Drawing.Size(106, 6);
             // 
             // miExit
             // 
             this.miExit.Image = global::ArgenCatProj.Properties.Resources.exit;
             this.miExit.Name = "miExit";
-            this.miExit.Size = new System.Drawing.Size(152, 22);
+            this.miExit.Size = new System.Drawing.Size(109, 22);
             this.miExit.Text = "Salir";
             this.miExit.Click += new System.EventHandler(this.miExit_Click);
             // 

@@ -45,18 +45,18 @@
             this.lblNumber = new System.Windows.Forms.Label();
             this.splitStudent = new System.Windows.Forms.SplitContainer();
             this.treeStudent = new System.Windows.Forms.TreeView();
-            this.imgTreeStudent = new System.Windows.Forms.ImageList(this.components);
-            this.dgvStudent = new System.Windows.Forms.DataGridView();
             this.cmenuTreeStudent = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.miAddCourse = new System.Windows.Forms.ToolStripMenuItem();
+            this.imgTreeStudent = new System.Windows.Forms.ImageList(this.components);
+            this.dgvStudent = new System.Windows.Forms.DataGridView();
             this.statusStudent = new System.Windows.Forms.StatusStrip();
             this.gboxStudentData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitStudent)).BeginInit();
             this.splitStudent.Panel1.SuspendLayout();
             this.splitStudent.Panel2.SuspendLayout();
             this.splitStudent.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvStudent)).BeginInit();
             this.cmenuTreeStudent.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStudent)).BeginInit();
             this.SuspendLayout();
             // 
             // gboxStudentData
@@ -213,6 +213,21 @@
             this.treeStudent.TabIndex = 0;
             this.treeStudent.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeStudent_AfterSelect);
             // 
+            // cmenuTreeStudent
+            // 
+            this.cmenuTreeStudent.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.miAddCourse});
+            this.cmenuTreeStudent.Name = "cmenuTreeStudent";
+            this.cmenuTreeStudent.Size = new System.Drawing.Size(160, 26);
+            // 
+            // miAddCourse
+            // 
+            this.miAddCourse.Image = global::ArgenCatProj.Properties.Resources.list_add;
+            this.miAddCourse.Name = "miAddCourse";
+            this.miAddCourse.Size = new System.Drawing.Size(159, 22);
+            this.miAddCourse.Text = "Inscribir a Curso";
+            this.miAddCourse.Click += new System.EventHandler(this.miAddCourse_Click);
+            // 
             // imgTreeStudent
             // 
             this.imgTreeStudent.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgTreeStudent.ImageStream")));
@@ -241,21 +256,7 @@
             this.dgvStudent.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvStudent.Size = new System.Drawing.Size(439, 264);
             this.dgvStudent.TabIndex = 0;
-            // 
-            // cmenuTreeStudent
-            // 
-            this.cmenuTreeStudent.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.miAddCourse});
-            this.cmenuTreeStudent.Name = "cmenuTreeStudent";
-            this.cmenuTreeStudent.Size = new System.Drawing.Size(160, 26);
-            // 
-            // miAddCourse
-            // 
-            this.miAddCourse.Image = global::ArgenCatProj.Properties.Resources.list_add;
-            this.miAddCourse.Name = "miAddCourse";
-            this.miAddCourse.Size = new System.Drawing.Size(159, 22);
-            this.miAddCourse.Text = "Inscribir a Curso";
-            this.miAddCourse.Click += new System.EventHandler(this.miAddCourse_Click);
+            this.dgvStudent.DoubleClick += new System.EventHandler(this.dgvStudent_DoubleClick);
             // 
             // statusStudent
             // 
@@ -277,7 +278,7 @@
             this.Name = "FStudent";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Estudiante";
+            this.Text = "q";
             this.Load += new System.EventHandler(this.FStudent_Load);
             this.gboxStudentData.ResumeLayout(false);
             this.gboxStudentData.PerformLayout();
@@ -285,8 +286,8 @@
             this.splitStudent.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitStudent)).EndInit();
             this.splitStudent.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvStudent)).EndInit();
             this.cmenuTreeStudent.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStudent)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
