@@ -19,7 +19,7 @@ namespace ArgenCatProj.View
         public FStudent(student stdnt)
         {
             InitializeComponent();
-            _controller = new Student(stdnt);
+            _controller = new Student();
             _student = stdnt;
         }
 
@@ -42,7 +42,7 @@ namespace ArgenCatProj.View
         private void LoadTree()
         {
             TreeNode root = new TreeNode(FMain.COURSES, 0, 1);
-            foreach (student_courses sc in _student.student_courses)
+            foreach (student_course_paymentplan sc in _student.student_course_paymentplan)
             {
                 TreeNode course = new TreeNode(sc.course.Name, 2, 3);
                 root.Nodes.Add(course);
@@ -56,7 +56,8 @@ namespace ArgenCatProj.View
         {
             if (e.Node.Level != 0)
             {
-                dgvStudent.DataSource = _controller.GetCursePayments(e.Node.Text);
+                dgvStudent.Columns.Clear();
+                dgvStudent.DataSource = _controller.GetCursePayments(_student, e.Node.Text);
                 dgvStudent.Columns[0].Visible = false;
                 dgvStudent.Columns[1].Visible = false;
                 DataGridViewImageColumn imageCol = new DataGridViewImageColumn();
@@ -81,6 +82,19 @@ namespace ArgenCatProj.View
         {
             FRegisterStudent regStudent = new FRegisterStudent(_student);
             regStudent.ShowDialog(this);
+
+            _student = _controller.GetStudentData(_student.Id);
+            treeStudent.Nodes.Clear();
+            LoadTree();
+        }
+
+        private void dgvStudent_DoubleClick(object sender, EventArgs e)
+        {
+            if (dgvStudent.SelectedRows.Count > 0)
+            {
+                FNewPayment np = new FNewPayment(_controller.GetPaymentData(Convert.ToInt32(dgvStudent.SelectedRows[0].Cells[0].Value)));
+                np.ShowDialog(this);
+            }
         }
     }
 }

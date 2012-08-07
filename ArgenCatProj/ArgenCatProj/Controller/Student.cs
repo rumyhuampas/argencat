@@ -10,21 +10,33 @@ namespace ArgenCatProj.Controller
     public class Student
     {
         private argencatEntities _db;
-        private student _student;
 
-        public Student(student stdnt)
+        public Student()
         {
             _db = new argencatEntities();
-            _student = stdnt;
         }
 
-        public IEnumerable<dynamic> GetCursePayments(string CurseName)
+        public IEnumerable<dynamic> GetCursePayments(student stdnt, string CurseName)
         {
-            student_courses currentStudentCurse = _student.student_courses.Where(model=>model.course.Name == CurseName).First();
+            student_course_paymentplan currentStudentCurse = stdnt.student_course_paymentplan.Where(model => model.course.Name == CurseName).First();
             return from planpayments in _db.paymentplan_payments
-                   join payments in _db.payments on planpayments.PaymentId equals payments.Id
-                   where planpayments.PaymentPlanId == currentStudentCurse.paymentPlanId
+                   join payments in _db.payments on planpayments.paymentId equals payments.Id
+                   where planpayments.paymentplanId == currentStudentCurse.paymentPlanId
                    select new { payments.Id, payments.Payed, payments.Number, payments.RecipNumber, payments.Amount, payments.DatePayed };
+        }
+
+        public student GetStudentData(int id)
+        {
+            return (from students in _db.students
+                     where students.Id == id
+                     select students).First();
+        }
+
+        public payment GetPaymentData(int id)
+        {
+            return (from payments in _db.payments
+                    where payments.Id == id
+                    select payments).First();
         }
     }
 }

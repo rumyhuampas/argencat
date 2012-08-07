@@ -10,7 +10,7 @@
           <EntitySet Name="paymentplan_payments" EntityType="argencatModel.Store.paymentplan_payments" store:Type="Tables" Schema="argencat" />
           <EntitySet Name="paymentplans" EntityType="argencatModel.Store.paymentplans" store:Type="Tables" Schema="argencat" />
           <EntitySet Name="payments" EntityType="argencatModel.Store.payments" store:Type="Tables" Schema="argencat" />
-          <EntitySet Name="student_courses" EntityType="argencatModel.Store.student_courses" store:Type="Tables" Schema="argencat" />
+          <EntitySet Name="student_course_paymentplan" EntityType="argencatModel.Store.student_course_paymentplan" store:Type="Tables" Schema="argencat" />
           <EntitySet Name="students" EntityType="argencatModel.Store.students" store:Type="Tables" Schema="argencat" />
           <EntitySet Name="users" EntityType="argencatModel.Store.users" store:Type="Tables" Schema="argencat" />
           <AssociationSet Name="FK_paymentplan_payments_paymentplans" Association="argencatModel.Store.FK_paymentplan_payments_paymentplans">
@@ -21,17 +21,17 @@
             <End Role="payments" EntitySet="payments" />
             <End Role="paymentplan_payments" EntitySet="paymentplan_payments" />
           </AssociationSet>
-          <AssociationSet Name="FK_student_courses_courses" Association="argencatModel.Store.FK_student_courses_courses">
+          <AssociationSet Name="FK_student_course_paymentplan_courses" Association="argencatModel.Store.FK_student_course_paymentplan_courses">
             <End Role="courses" EntitySet="courses" />
-            <End Role="student_courses" EntitySet="student_courses" />
+            <End Role="student_course_paymentplan" EntitySet="student_course_paymentplan" />
           </AssociationSet>
-          <AssociationSet Name="FK_student_courses_paymentplans" Association="argencatModel.Store.FK_student_courses_paymentplans">
+          <AssociationSet Name="FK_student_course_paymentplan_paymentplans" Association="argencatModel.Store.FK_student_course_paymentplan_paymentplans">
             <End Role="paymentplans" EntitySet="paymentplans" />
-            <End Role="student_courses" EntitySet="student_courses" />
+            <End Role="student_course_paymentplan" EntitySet="student_course_paymentplan" />
           </AssociationSet>
-          <AssociationSet Name="FK_student_courses_students" Association="argencatModel.Store.FK_student_courses_students">
+          <AssociationSet Name="FK_student_course_paymentplan_students" Association="argencatModel.Store.FK_student_course_paymentplan_students">
             <End Role="students" EntitySet="students" />
-            <End Role="student_courses" EntitySet="student_courses" />
+            <End Role="student_course_paymentplan" EntitySet="student_course_paymentplan" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="courses">
@@ -47,14 +47,15 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="PaymentPlanId" Type="int" Nullable="false" />
-          <Property Name="PaymentId" Type="int" Nullable="false" />
+          <Property Name="paymentplanId" Type="int" Nullable="false" />
+          <Property Name="paymentId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="paymentplans">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
         </EntityType>
         <EntityType Name="payments">
           <Key>
@@ -67,14 +68,14 @@
           <Property Name="DatePayed" Type="datetime" />
           <Property Name="RecipNumber" Type="int" />
         </EntityType>
-        <EntityType Name="student_courses">
+        <EntityType Name="student_course_paymentplan">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="studentId" Type="int" Nullable="false" />
-          <Property Name="paymentPlanId" Type="int" Nullable="false" />
           <Property Name="courseId" Type="int" Nullable="false" />
+          <Property Name="paymentPlanId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="students">
           <Key>
@@ -104,7 +105,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="paymentplan_payments">
-              <PropertyRef Name="PaymentPlanId" />
+              <PropertyRef Name="paymentplanId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -116,42 +117,42 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="paymentplan_payments">
-              <PropertyRef Name="PaymentId" />
+              <PropertyRef Name="paymentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_student_courses_courses">
+        <Association Name="FK_student_course_paymentplan_courses">
           <End Role="courses" Type="argencatModel.Store.courses" Multiplicity="1" />
-          <End Role="student_courses" Type="argencatModel.Store.student_courses" Multiplicity="*" />
+          <End Role="student_course_paymentplan" Type="argencatModel.Store.student_course_paymentplan" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="courses">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="student_courses">
+            <Dependent Role="student_course_paymentplan">
               <PropertyRef Name="courseId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_student_courses_paymentplans">
+        <Association Name="FK_student_course_paymentplan_paymentplans">
           <End Role="paymentplans" Type="argencatModel.Store.paymentplans" Multiplicity="1" />
-          <End Role="student_courses" Type="argencatModel.Store.student_courses" Multiplicity="*" />
+          <End Role="student_course_paymentplan" Type="argencatModel.Store.student_course_paymentplan" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="paymentplans">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="student_courses">
+            <Dependent Role="student_course_paymentplan">
               <PropertyRef Name="paymentPlanId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_student_courses_students">
+        <Association Name="FK_student_course_paymentplan_students">
           <End Role="students" Type="argencatModel.Store.students" Multiplicity="1" />
-          <End Role="student_courses" Type="argencatModel.Store.student_courses" Multiplicity="*" />
+          <End Role="student_course_paymentplan" Type="argencatModel.Store.student_course_paymentplan" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="students">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="student_courses">
+            <Dependent Role="student_course_paymentplan">
               <PropertyRef Name="studentId" />
             </Dependent>
           </ReferentialConstraint>
@@ -165,12 +166,12 @@
           <EntitySet Name="paymentplan_payments" EntityType="argencatModel.paymentplan_payments" />
           <EntitySet Name="paymentplans" EntityType="argencatModel.paymentplan" />
           <EntitySet Name="payments" EntityType="argencatModel.payment" />
-          <EntitySet Name="student_courses" EntityType="argencatModel.student_courses" />
+          <EntitySet Name="student_course_paymentplan" EntityType="argencatModel.student_course_paymentplan" />
           <EntitySet Name="students" EntityType="argencatModel.student" />
           <EntitySet Name="users" EntityType="argencatModel.user" />
-          <AssociationSet Name="FK_student_courses_courses" Association="argencatModel.FK_student_courses_courses">
+          <AssociationSet Name="FK_student_course_paymentplan_courses" Association="argencatModel.FK_student_course_paymentplan_courses">
             <End Role="cours" EntitySet="courses" />
-            <End Role="student_courses" EntitySet="student_courses" />
+            <End Role="student_course_paymentplan" EntitySet="student_course_paymentplan" />
           </AssociationSet>
           <AssociationSet Name="FK_paymentplan_payments_paymentplans" Association="argencatModel.FK_paymentplan_payments_paymentplans">
             <End Role="paymentplan" EntitySet="paymentplans" />
@@ -180,13 +181,13 @@
             <End Role="payment" EntitySet="payments" />
             <End Role="paymentplan_payments" EntitySet="paymentplan_payments" />
           </AssociationSet>
-          <AssociationSet Name="FK_student_courses_paymentplans" Association="argencatModel.FK_student_courses_paymentplans">
+          <AssociationSet Name="FK_student_course_paymentplan_paymentplans" Association="argencatModel.FK_student_course_paymentplan_paymentplans">
             <End Role="paymentplan" EntitySet="paymentplans" />
-            <End Role="student_courses" EntitySet="student_courses" />
+            <End Role="student_course_paymentplan" EntitySet="student_course_paymentplan" />
           </AssociationSet>
-          <AssociationSet Name="FK_student_courses_students" Association="argencatModel.FK_student_courses_students">
+          <AssociationSet Name="FK_student_course_paymentplan_students" Association="argencatModel.FK_student_course_paymentplan_students">
             <End Role="student" EntitySet="students" />
-            <End Role="student_courses" EntitySet="student_courses" />
+            <End Role="student_course_paymentplan" EntitySet="student_course_paymentplan" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="course">
@@ -195,16 +196,16 @@
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" Nullable="false" />
-          <NavigationProperty Name="student_courses" Relationship="argencatModel.FK_student_courses_courses" FromRole="cours" ToRole="student_courses" />
           <Property Type="Int32" Name="PaymentsCount" Nullable="false" />
+          <NavigationProperty Name="student_course_paymentplan" Relationship="argencatModel.FK_student_course_paymentplan_courses" FromRole="cours" ToRole="student_course_paymentplan" />
         </EntityType>
         <EntityType Name="paymentplan_payments">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="PaymentPlanId" Nullable="false" />
-          <Property Type="Int32" Name="PaymentId" Nullable="false" />
+          <Property Type="Int32" Name="paymentplanId" Nullable="false" />
+          <Property Type="Int32" Name="paymentId" Nullable="false" />
           <NavigationProperty Name="paymentplan" Relationship="argencatModel.FK_paymentplan_payments_paymentplans" FromRole="paymentplan_payments" ToRole="paymentplan" />
           <NavigationProperty Name="payment" Relationship="argencatModel.FK_paymentplan_payments_payments" FromRole="paymentplan_payments" ToRole="payment" />
         </EntityType>
@@ -213,8 +214,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
           <NavigationProperty Name="paymentplan_payments" Relationship="argencatModel.FK_paymentplan_payments_paymentplans" FromRole="paymentplan" ToRole="paymentplan_payments" />
-          <NavigationProperty Name="student_courses" Relationship="argencatModel.FK_student_courses_paymentplans" FromRole="paymentplan" ToRole="student_courses" />
+          <NavigationProperty Name="student_course_paymentplan" Relationship="argencatModel.FK_student_course_paymentplan_paymentplans" FromRole="paymentplan" ToRole="student_course_paymentplan" />
         </EntityType>
         <EntityType Name="payment">
           <Key>
@@ -228,17 +230,17 @@
           <Property Type="Int32" Name="RecipNumber" />
           <NavigationProperty Name="paymentplan_payments" Relationship="argencatModel.FK_paymentplan_payments_payments" FromRole="payment" ToRole="paymentplan_payments" />
         </EntityType>
-        <EntityType Name="student_courses">
+        <EntityType Name="student_course_paymentplan">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="studentId" Nullable="false" />
-          <Property Type="Int32" Name="paymentPlanId" Nullable="false" />
           <Property Type="Int32" Name="courseId" Nullable="false" />
-          <NavigationProperty Name="course" Relationship="argencatModel.FK_student_courses_courses" FromRole="student_courses" ToRole="cours" />
-          <NavigationProperty Name="paymentplan" Relationship="argencatModel.FK_student_courses_paymentplans" FromRole="student_courses" ToRole="paymentplan" />
-          <NavigationProperty Name="student" Relationship="argencatModel.FK_student_courses_students" FromRole="student_courses" ToRole="student" />
+          <Property Type="Int32" Name="paymentPlanId" Nullable="false" />
+          <NavigationProperty Name="course" Relationship="argencatModel.FK_student_course_paymentplan_courses" FromRole="student_course_paymentplan" ToRole="cours" />
+          <NavigationProperty Name="paymentplan" Relationship="argencatModel.FK_student_course_paymentplan_paymentplans" FromRole="student_course_paymentplan" ToRole="paymentplan" />
+          <NavigationProperty Name="student" Relationship="argencatModel.FK_student_course_paymentplan_students" FromRole="student_course_paymentplan" ToRole="student" />
         </EntityType>
         <EntityType Name="student">
           <Key>
@@ -251,7 +253,7 @@
           <Property Type="String" Name="Address" />
           <Property Type="String" Name="Phone" />
           <Property Type="String" Name="Phone2" />
-          <NavigationProperty Name="student_courses" Relationship="argencatModel.FK_student_courses_students" FromRole="student" ToRole="student_courses" />
+          <NavigationProperty Name="student_course_paymentplan" Relationship="argencatModel.FK_student_course_paymentplan_students" FromRole="student" ToRole="student_course_paymentplan" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -261,14 +263,14 @@
           <Property Type="String" Name="Name" Nullable="false" />
           <Property Type="String" Name="Pass" Nullable="false" />
         </EntityType>
-        <Association Name="FK_student_courses_courses">
+        <Association Name="FK_student_course_paymentplan_courses">
           <End Type="argencatModel.course" Role="cours" Multiplicity="1" />
-          <End Type="argencatModel.student_courses" Role="student_courses" Multiplicity="*" />
+          <End Type="argencatModel.student_course_paymentplan" Role="student_course_paymentplan" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="cours">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="student_courses">
+            <Dependent Role="student_course_paymentplan">
               <PropertyRef Name="courseId" />
             </Dependent>
           </ReferentialConstraint>
@@ -281,7 +283,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="paymentplan_payments">
-              <PropertyRef Name="PaymentPlanId" />
+              <PropertyRef Name="paymentplanId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -293,30 +295,30 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="paymentplan_payments">
-              <PropertyRef Name="PaymentId" />
+              <PropertyRef Name="paymentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_student_courses_paymentplans">
+        <Association Name="FK_student_course_paymentplan_paymentplans">
           <End Type="argencatModel.paymentplan" Role="paymentplan" Multiplicity="1" />
-          <End Type="argencatModel.student_courses" Role="student_courses" Multiplicity="*" />
+          <End Type="argencatModel.student_course_paymentplan" Role="student_course_paymentplan" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="paymentplan">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="student_courses">
+            <Dependent Role="student_course_paymentplan">
               <PropertyRef Name="paymentPlanId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_student_courses_students">
+        <Association Name="FK_student_course_paymentplan_students">
           <End Type="argencatModel.student" Role="student" Multiplicity="1" />
-          <End Type="argencatModel.student_courses" Role="student_courses" Multiplicity="*" />
+          <End Type="argencatModel.student_course_paymentplan" Role="student_course_paymentplan" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="student">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="student_courses">
+            <Dependent Role="student_course_paymentplan">
               <PropertyRef Name="studentId" />
             </Dependent>
           </ReferentialConstraint>
@@ -339,8 +341,8 @@
           <EntitySetMapping Name="paymentplan_payments">
             <EntityTypeMapping TypeName="argencatModel.paymentplan_payments">
               <MappingFragment StoreEntitySet="paymentplan_payments">
-                <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
-                <ScalarProperty Name="PaymentPlanId" ColumnName="PaymentPlanId" />
+                <ScalarProperty Name="paymentId" ColumnName="paymentId" />
+                <ScalarProperty Name="paymentplanId" ColumnName="paymentplanId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -348,6 +350,7 @@
           <EntitySetMapping Name="paymentplans">
             <EntityTypeMapping TypeName="argencatModel.paymentplan">
               <MappingFragment StoreEntitySet="paymentplans">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -364,11 +367,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="student_courses">
-            <EntityTypeMapping TypeName="argencatModel.student_courses">
-              <MappingFragment StoreEntitySet="student_courses">
-                <ScalarProperty Name="courseId" ColumnName="courseId" />
+          <EntitySetMapping Name="student_course_paymentplan">
+            <EntityTypeMapping TypeName="argencatModel.student_course_paymentplan">
+              <MappingFragment StoreEntitySet="student_course_paymentplan">
                 <ScalarProperty Name="paymentPlanId" ColumnName="paymentPlanId" />
+                <ScalarProperty Name="courseId" ColumnName="courseId" />
                 <ScalarProperty Name="studentId" ColumnName="studentId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -417,41 +420,41 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="ArgenCatModel">
-        <EntityTypeShape EntityType="argencatModel.course" Width="1.5" PointX="0.75" PointY="1.25" Height="1.5956835937499996" />
-        <EntityTypeShape EntityType="argencatModel.paymentplan_payments" Width="1.5" PointX="3" PointY="4" Height="1.9802864583333353" />
-        <EntityTypeShape EntityType="argencatModel.paymentplan" Width="1.5" PointX="0.75" PointY="4.125" Height="1.5956835937500031" />
+        <EntityTypeShape EntityType="argencatModel.course" Width="1.5" PointX="0.75" PointY="1.5" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="argencatModel.paymentplan_payments" Width="1.5" PointX="3" PointY="4" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="argencatModel.paymentplan" Width="1.5" PointX="0.75" PointY="4" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="argencatModel.payment" Width="1.5" PointX="0.75" PointY="10.75" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="argencatModel.student_courses" Width="1.5" PointX="3" PointY="0.75" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="argencatModel.student" Width="1.5" PointX="0.75" PointY="6.625" Height="2.5571907552083388" />
+        <EntityTypeShape EntityType="argencatModel.student_course_paymentplan" Width="1.5" PointX="3" PointY="0.75" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="argencatModel.student" Width="1.5" PointX="0.75" PointY="7" Height="2.5571907552083388" />
         <EntityTypeShape EntityType="argencatModel.user" Width="1.5" PointX="5.75" PointY="2" Height="1.5956835937500031" />
-        <AssociationConnector Association="argencatModel.FK_student_courses_courses" >
-          <ConnectorPoint PointX="2.25" PointY="2.047841796875" />
-          <ConnectorPoint PointX="2.5416666666666665" PointY="2.0478417968749993" />
-          <ConnectorPoint PointX="2.7083333333333335" PointY="2.047841796875" />
-          <ConnectorPoint PointX="3" PointY="2.047841796875" />
+        <AssociationConnector Association="argencatModel.FK_student_course_paymentplan_courses" >
+          <ConnectorPoint PointX="2.25" PointY="2.3074446614583337" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="2.3074446614583333" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="2.3074446614583337" />
+          <ConnectorPoint PointX="3" PointY="2.3074446614583337" />
         </AssociationConnector>
         <AssociationConnector Association="argencatModel.FK_paymentplan_payments_paymentplans" >
-          <ConnectorPoint PointX="2.25" PointY="4.9228417968750016" />
-          <ConnectorPoint PointX="2.7291666666666665" PointY="4.9228417968750007" />
-          <ConnectorPoint PointX="2.8958333333333335" PointY="4.9228417968750016" />
-          <ConnectorPoint PointX="3" PointY="4.9228417968750016" />
+          <ConnectorPoint PointX="2.25" PointY="4.8939925130208337" />
+          <ConnectorPoint PointX="2.7291666666666665" PointY="4.8939925130208328" />
+          <ConnectorPoint PointX="2.8958333333333335" PointY="4.8939925130208337" />
+          <ConnectorPoint PointX="3" PointY="4.8939925130208337" />
         </AssociationConnector>
         <AssociationConnector Association="argencatModel.FK_paymentplan_payments_payments" >
           <ConnectorPoint PointX="2.25" PointY="11.932444661458334" />
           <ConnectorPoint PointX="3.75" PointY="11.932444661458334" />
-          <ConnectorPoint PointX="3.75" PointY="5.9802864583333353" />
+          <ConnectorPoint PointX="3.75" PointY="5.9802864583333388" />
         </AssociationConnector>
-        <AssociationConnector Association="argencatModel.FK_student_courses_paymentplans" >
-          <ConnectorPoint PointX="2.25" PointY="4.125" />
-          <ConnectorPoint PointX="2.625" PointY="3.75" />
-          <ConnectorPoint PointX="2.625" PointY="1.3676688984374992" />
-          <ConnectorPoint PointX="3" PointY="1.3676688984374992" />
+        <AssociationConnector Association="argencatModel.FK_student_course_paymentplan_paymentplans" >
+          <ConnectorPoint PointX="2.25" PointY="4" />
+          <ConnectorPoint PointX="2.625" PointY="3.625" />
+          <ConnectorPoint PointX="2.625" PointY="1.4974703307291732" />
+          <ConnectorPoint PointX="3" PointY="1.4974703307291732" />
         </AssociationConnector>
-        <AssociationConnector Association="argencatModel.FK_student_courses_students" >
-          <ConnectorPoint PointX="2.25" PointY="6.6873066923076925" />
-          <ConnectorPoint PointX="2.8125" PointY="6.1248066923076934" />
-          <ConnectorPoint PointX="2.8125" PointY="2.6126175598958343" />
-          <ConnectorPoint PointX="3" PointY="2.6126175598958343" />
+        <AssociationConnector Association="argencatModel.FK_student_course_paymentplan_students" >
+          <ConnectorPoint PointX="2.25" PointY="7.0623066923076925" />
+          <ConnectorPoint PointX="2.8125" PointY="6.4998066923076934" />
+          <ConnectorPoint PointX="2.8125" PointY="2.7424189921874942" />
+          <ConnectorPoint PointX="3" PointY="2.7424189921874942" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

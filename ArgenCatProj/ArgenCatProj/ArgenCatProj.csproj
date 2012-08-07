@@ -52,6 +52,7 @@
     <Compile Include="Controller\Login.cs" />
     <Compile Include="Controller\Main.cs" />
     <Compile Include="Controller\NewCourse.cs" />
+    <Compile Include="Controller\NewPayment.cs" />
     <Compile Include="Controller\NewStudent.cs" />
     <Compile Include="Controller\RegisterStudent.cs" />
     <Compile Include="Controller\Student.cs" />
@@ -79,6 +80,12 @@
     </Compile>
     <Compile Include="View\NewCourse.Designer.cs">
       <DependentUpon>NewCourse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\NewPayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\NewPayment.Designer.cs">
+      <DependentUpon>NewPayment.cs</DependentUpon>
     </Compile>
     <Compile Include="View\NewStudent.cs">
       <SubType>Form</SubType>
@@ -116,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\NewCourse.resx">
       <DependentUpon>NewCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\NewPayment.resx">
+      <DependentUpon>NewPayment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\NewStudent.resx">
       <DependentUpon>NewStudent.cs</DependentUpon>

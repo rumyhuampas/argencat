@@ -18,11 +18,11 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("argencatModel", "FK_student_courses_courses", "cours", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ArgenCatProj.Model.course), "student_courses", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ArgenCatProj.Model.student_courses), true)]
+[assembly: EdmRelationshipAttribute("argencatModel", "FK_student_course_paymentplan_courses", "cours", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ArgenCatProj.Model.course), "student_course_paymentplan", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ArgenCatProj.Model.student_course_paymentplan), true)]
 [assembly: EdmRelationshipAttribute("argencatModel", "FK_paymentplan_payments_paymentplans", "paymentplan", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ArgenCatProj.Model.paymentplan), "paymentplan_payments", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ArgenCatProj.Model.paymentplan_payments), true)]
 [assembly: EdmRelationshipAttribute("argencatModel", "FK_paymentplan_payments_payments", "payment", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ArgenCatProj.Model.payment), "paymentplan_payments", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ArgenCatProj.Model.paymentplan_payments), true)]
-[assembly: EdmRelationshipAttribute("argencatModel", "FK_student_courses_paymentplans", "paymentplan", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ArgenCatProj.Model.paymentplan), "student_courses", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ArgenCatProj.Model.student_courses), true)]
-[assembly: EdmRelationshipAttribute("argencatModel", "FK_student_courses_students", "student", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ArgenCatProj.Model.student), "student_courses", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ArgenCatProj.Model.student_courses), true)]
+[assembly: EdmRelationshipAttribute("argencatModel", "FK_student_course_paymentplan_paymentplans", "paymentplan", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ArgenCatProj.Model.paymentplan), "student_course_paymentplan", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ArgenCatProj.Model.student_course_paymentplan), true)]
+[assembly: EdmRelationshipAttribute("argencatModel", "FK_student_course_paymentplan_students", "student", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ArgenCatProj.Model.student), "student_course_paymentplan", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ArgenCatProj.Model.student_course_paymentplan), true)]
 
 #endregion
 
@@ -141,18 +141,18 @@ namespace ArgenCatProj.Model
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<student_courses> student_courses
+        public ObjectSet<student_course_paymentplan> student_course_paymentplan
         {
             get
             {
-                if ((_student_courses == null))
+                if ((_student_course_paymentplan == null))
                 {
-                    _student_courses = base.CreateObjectSet<student_courses>("student_courses");
+                    _student_course_paymentplan = base.CreateObjectSet<student_course_paymentplan>("student_course_paymentplan");
                 }
-                return _student_courses;
+                return _student_course_paymentplan;
             }
         }
-        private ObjectSet<student_courses> _student_courses;
+        private ObjectSet<student_course_paymentplan> _student_course_paymentplan;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -222,11 +222,11 @@ namespace ArgenCatProj.Model
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the student_courses EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the student_course_paymentplan EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddTostudent_courses(student_courses student_courses)
+        public void AddTostudent_course_paymentplan(student_course_paymentplan student_course_paymentplan)
         {
-            base.AddObject("student_courses", student_courses);
+            base.AddObject("student_course_paymentplan", student_course_paymentplan);
         }
     
         /// <summary>
@@ -366,18 +366,18 @@ namespace ArgenCatProj.Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("argencatModel", "FK_student_courses_courses", "student_courses")]
-        public EntityCollection<student_courses> student_courses
+        [EdmRelationshipNavigationPropertyAttribute("argencatModel", "FK_student_course_paymentplan_courses", "student_course_paymentplan")]
+        public EntityCollection<student_course_paymentplan> student_course_paymentplan
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<student_courses>("argencatModel.FK_student_courses_courses", "student_courses");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<student_course_paymentplan>("argencatModel.FK_student_course_paymentplan_courses", "student_course_paymentplan");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<student_courses>("argencatModel.FK_student_courses_courses", "student_courses", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<student_course_paymentplan>("argencatModel.FK_student_course_paymentplan_courses", "student_course_paymentplan", value);
                 }
             }
         }
@@ -603,10 +603,12 @@ namespace ArgenCatProj.Model
         /// Create a new paymentplan object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
-        public static paymentplan Createpaymentplan(global::System.Int32 id)
+        /// <param name="name">Initial value of the Name property.</param>
+        public static paymentplan Createpaymentplan(global::System.Int32 id, global::System.String name)
         {
             paymentplan paymentplan = new paymentplan();
             paymentplan.Id = id;
+            paymentplan.Name = name;
             return paymentplan;
         }
 
@@ -639,6 +641,30 @@ namespace ArgenCatProj.Model
         private global::System.Int32 _Id;
         partial void OnIdChanging(global::System.Int32 value);
         partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
 
         #endregion
     
@@ -672,18 +698,18 @@ namespace ArgenCatProj.Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("argencatModel", "FK_student_courses_paymentplans", "student_courses")]
-        public EntityCollection<student_courses> student_courses
+        [EdmRelationshipNavigationPropertyAttribute("argencatModel", "FK_student_course_paymentplan_paymentplans", "student_course_paymentplan")]
+        public EntityCollection<student_course_paymentplan> student_course_paymentplan
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<student_courses>("argencatModel.FK_student_courses_paymentplans", "student_courses");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<student_course_paymentplan>("argencatModel.FK_student_course_paymentplan_paymentplans", "student_course_paymentplan");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<student_courses>("argencatModel.FK_student_courses_paymentplans", "student_courses", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<student_course_paymentplan>("argencatModel.FK_student_course_paymentplan_paymentplans", "student_course_paymentplan", value);
                 }
             }
         }
@@ -705,14 +731,14 @@ namespace ArgenCatProj.Model
         /// Create a new paymentplan_payments object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
-        /// <param name="paymentPlanId">Initial value of the PaymentPlanId property.</param>
-        /// <param name="paymentId">Initial value of the PaymentId property.</param>
-        public static paymentplan_payments Createpaymentplan_payments(global::System.Int32 id, global::System.Int32 paymentPlanId, global::System.Int32 paymentId)
+        /// <param name="paymentplanId">Initial value of the paymentplanId property.</param>
+        /// <param name="paymentId">Initial value of the paymentId property.</param>
+        public static paymentplan_payments Createpaymentplan_payments(global::System.Int32 id, global::System.Int32 paymentplanId, global::System.Int32 paymentId)
         {
             paymentplan_payments paymentplan_payments = new paymentplan_payments();
             paymentplan_payments.Id = id;
-            paymentplan_payments.PaymentPlanId = paymentPlanId;
-            paymentplan_payments.PaymentId = paymentId;
+            paymentplan_payments.paymentplanId = paymentplanId;
+            paymentplan_payments.paymentId = paymentId;
             return paymentplan_payments;
         }
 
@@ -751,48 +777,48 @@ namespace ArgenCatProj.Model
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 PaymentPlanId
+        public global::System.Int32 paymentplanId
         {
             get
             {
-                return _PaymentPlanId;
+                return _paymentplanId;
             }
             set
             {
-                OnPaymentPlanIdChanging(value);
-                ReportPropertyChanging("PaymentPlanId");
-                _PaymentPlanId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("PaymentPlanId");
-                OnPaymentPlanIdChanged();
+                OnpaymentplanIdChanging(value);
+                ReportPropertyChanging("paymentplanId");
+                _paymentplanId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("paymentplanId");
+                OnpaymentplanIdChanged();
             }
         }
-        private global::System.Int32 _PaymentPlanId;
-        partial void OnPaymentPlanIdChanging(global::System.Int32 value);
-        partial void OnPaymentPlanIdChanged();
+        private global::System.Int32 _paymentplanId;
+        partial void OnpaymentplanIdChanging(global::System.Int32 value);
+        partial void OnpaymentplanIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 PaymentId
+        public global::System.Int32 paymentId
         {
             get
             {
-                return _PaymentId;
+                return _paymentId;
             }
             set
             {
-                OnPaymentIdChanging(value);
-                ReportPropertyChanging("PaymentId");
-                _PaymentId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("PaymentId");
-                OnPaymentIdChanged();
+                OnpaymentIdChanging(value);
+                ReportPropertyChanging("paymentId");
+                _paymentId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("paymentId");
+                OnpaymentIdChanged();
             }
         }
-        private global::System.Int32 _PaymentId;
-        partial void OnPaymentIdChanging(global::System.Int32 value);
-        partial void OnPaymentIdChanged();
+        private global::System.Int32 _paymentId;
+        partial void OnpaymentIdChanging(global::System.Int32 value);
+        partial void OnpaymentIdChanged();
 
         #endregion
     
@@ -1088,18 +1114,18 @@ namespace ArgenCatProj.Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("argencatModel", "FK_student_courses_students", "student_courses")]
-        public EntityCollection<student_courses> student_courses
+        [EdmRelationshipNavigationPropertyAttribute("argencatModel", "FK_student_course_paymentplan_students", "student_course_paymentplan")]
+        public EntityCollection<student_course_paymentplan> student_course_paymentplan
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<student_courses>("argencatModel.FK_student_courses_students", "student_courses");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<student_course_paymentplan>("argencatModel.FK_student_course_paymentplan_students", "student_course_paymentplan");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<student_courses>("argencatModel.FK_student_courses_students", "student_courses", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<student_course_paymentplan>("argencatModel.FK_student_course_paymentplan_students", "student_course_paymentplan", value);
                 }
             }
         }
@@ -1110,28 +1136,28 @@ namespace ArgenCatProj.Model
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="argencatModel", Name="student_courses")]
+    [EdmEntityTypeAttribute(NamespaceName="argencatModel", Name="student_course_paymentplan")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class student_courses : EntityObject
+    public partial class student_course_paymentplan : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new student_courses object.
+        /// Create a new student_course_paymentplan object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="studentId">Initial value of the studentId property.</param>
-        /// <param name="paymentPlanId">Initial value of the paymentPlanId property.</param>
         /// <param name="courseId">Initial value of the courseId property.</param>
-        public static student_courses Createstudent_courses(global::System.Int32 id, global::System.Int32 studentId, global::System.Int32 paymentPlanId, global::System.Int32 courseId)
+        /// <param name="paymentPlanId">Initial value of the paymentPlanId property.</param>
+        public static student_course_paymentplan Createstudent_course_paymentplan(global::System.Int32 id, global::System.Int32 studentId, global::System.Int32 courseId, global::System.Int32 paymentPlanId)
         {
-            student_courses student_courses = new student_courses();
-            student_courses.Id = id;
-            student_courses.studentId = studentId;
-            student_courses.paymentPlanId = paymentPlanId;
-            student_courses.courseId = courseId;
-            return student_courses;
+            student_course_paymentplan student_course_paymentplan = new student_course_paymentplan();
+            student_course_paymentplan.Id = id;
+            student_course_paymentplan.studentId = studentId;
+            student_course_paymentplan.courseId = courseId;
+            student_course_paymentplan.paymentPlanId = paymentPlanId;
+            return student_course_paymentplan;
         }
 
         #endregion
@@ -1193,30 +1219,6 @@ namespace ArgenCatProj.Model
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 paymentPlanId
-        {
-            get
-            {
-                return _paymentPlanId;
-            }
-            set
-            {
-                OnpaymentPlanIdChanging(value);
-                ReportPropertyChanging("paymentPlanId");
-                _paymentPlanId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("paymentPlanId");
-                OnpaymentPlanIdChanged();
-            }
-        }
-        private global::System.Int32 _paymentPlanId;
-        partial void OnpaymentPlanIdChanging(global::System.Int32 value);
-        partial void OnpaymentPlanIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
         public global::System.Int32 courseId
         {
             get
@@ -1235,6 +1237,30 @@ namespace ArgenCatProj.Model
         private global::System.Int32 _courseId;
         partial void OncourseIdChanging(global::System.Int32 value);
         partial void OncourseIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 paymentPlanId
+        {
+            get
+            {
+                return _paymentPlanId;
+            }
+            set
+            {
+                OnpaymentPlanIdChanging(value);
+                ReportPropertyChanging("paymentPlanId");
+                _paymentPlanId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("paymentPlanId");
+                OnpaymentPlanIdChanged();
+            }
+        }
+        private global::System.Int32 _paymentPlanId;
+        partial void OnpaymentPlanIdChanging(global::System.Int32 value);
+        partial void OnpaymentPlanIdChanged();
 
         #endregion
     
@@ -1246,16 +1272,16 @@ namespace ArgenCatProj.Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("argencatModel", "FK_student_courses_courses", "cours")]
+        [EdmRelationshipNavigationPropertyAttribute("argencatModel", "FK_student_course_paymentplan_courses", "cours")]
         public course course
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<course>("argencatModel.FK_student_courses_courses", "cours").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<course>("argencatModel.FK_student_course_paymentplan_courses", "cours").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<course>("argencatModel.FK_student_courses_courses", "cours").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<course>("argencatModel.FK_student_course_paymentplan_courses", "cours").Value = value;
             }
         }
         /// <summary>
@@ -1267,13 +1293,13 @@ namespace ArgenCatProj.Model
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<course>("argencatModel.FK_student_courses_courses", "cours");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<course>("argencatModel.FK_student_course_paymentplan_courses", "cours");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<course>("argencatModel.FK_student_courses_courses", "cours", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<course>("argencatModel.FK_student_course_paymentplan_courses", "cours", value);
                 }
             }
         }
@@ -1284,16 +1310,16 @@ namespace ArgenCatProj.Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("argencatModel", "FK_student_courses_paymentplans", "paymentplan")]
+        [EdmRelationshipNavigationPropertyAttribute("argencatModel", "FK_student_course_paymentplan_paymentplans", "paymentplan")]
         public paymentplan paymentplan
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<paymentplan>("argencatModel.FK_student_courses_paymentplans", "paymentplan").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<paymentplan>("argencatModel.FK_student_course_paymentplan_paymentplans", "paymentplan").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<paymentplan>("argencatModel.FK_student_courses_paymentplans", "paymentplan").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<paymentplan>("argencatModel.FK_student_course_paymentplan_paymentplans", "paymentplan").Value = value;
             }
         }
         /// <summary>
@@ -1305,13 +1331,13 @@ namespace ArgenCatProj.Model
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<paymentplan>("argencatModel.FK_student_courses_paymentplans", "paymentplan");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<paymentplan>("argencatModel.FK_student_course_paymentplan_paymentplans", "paymentplan");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<paymentplan>("argencatModel.FK_student_courses_paymentplans", "paymentplan", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<paymentplan>("argencatModel.FK_student_course_paymentplan_paymentplans", "paymentplan", value);
                 }
             }
         }
@@ -1322,16 +1348,16 @@ namespace ArgenCatProj.Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("argencatModel", "FK_student_courses_students", "student")]
+        [EdmRelationshipNavigationPropertyAttribute("argencatModel", "FK_student_course_paymentplan_students", "student")]
         public student student
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<student>("argencatModel.FK_student_courses_students", "student").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<student>("argencatModel.FK_student_course_paymentplan_students", "student").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<student>("argencatModel.FK_student_courses_students", "student").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<student>("argencatModel.FK_student_course_paymentplan_students", "student").Value = value;
             }
         }
         /// <summary>
@@ -1343,13 +1369,13 @@ namespace ArgenCatProj.Model
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<student>("argencatModel.FK_student_courses_students", "student");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<student>("argencatModel.FK_student_course_paymentplan_students", "student");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<student>("argencatModel.FK_student_courses_students", "student", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<student>("argencatModel.FK_student_course_paymentplan_students", "student", value);
                 }
             }
         }
