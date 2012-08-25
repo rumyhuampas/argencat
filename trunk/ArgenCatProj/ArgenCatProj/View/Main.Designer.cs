@@ -42,11 +42,16 @@
             this.statusMain = new System.Windows.Forms.StatusStrip();
             this.menuMain = new System.Windows.Forms.MenuStrip();
             this.miFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.miSep1 = new System.Windows.Forms.ToolStripSeparator();
+            this.miUsers = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbtnNew = new System.Windows.Forms.ToolStripSplitButton();
+            this.tsbtnNewCourse = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbtnNewStudent = new System.Windows.Forms.ToolStripMenuItem();
             this.miFileNew = new System.Windows.Forms.ToolStripMenuItem();
             this.miFileNewCourse = new System.Windows.Forms.ToolStripMenuItem();
             this.miFileNewStudent = new System.Windows.Forms.ToolStripMenuItem();
-            this.miSep1 = new System.Windows.Forms.ToolStripSeparator();
             this.miExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsslblLegend = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.splitMain)).BeginInit();
             this.splitMain.Panel1.SuspendLayout();
             this.splitMain.Panel2.SuspendLayout();
@@ -54,6 +59,8 @@
             this.pnlMainDGV.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMain)).BeginInit();
             this.pnlMainSearch.SuspendLayout();
+            this.toolMain.SuspendLayout();
+            this.statusMain.SuspendLayout();
             this.menuMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -124,6 +131,7 @@
             this.dgvMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvMain.Size = new System.Drawing.Size(611, 328);
             this.dgvMain.TabIndex = 0;
+            this.dgvMain.DataSourceChanged += new System.EventHandler(this.dgvMain_DataSourceChanged);
             this.dgvMain.DoubleClick += new System.EventHandler(this.dgvMain_DoubleClick);
             // 
             // pnlMainSearch
@@ -158,6 +166,8 @@
             // 
             // toolMain
             // 
+            this.toolMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbtnNew});
             this.toolMain.Location = new System.Drawing.Point(0, 24);
             this.toolMain.Name = "toolMain";
             this.toolMain.Size = new System.Drawing.Size(779, 25);
@@ -166,6 +176,8 @@
             // 
             // statusMain
             // 
+            this.statusMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsslblLegend});
             this.statusMain.Location = new System.Drawing.Point(0, 450);
             this.statusMain.Name = "statusMain";
             this.statusMain.Size = new System.Drawing.Size(779, 22);
@@ -175,7 +187,8 @@
             // menuMain
             // 
             this.menuMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.miFile});
+            this.miFile,
+            this.miUsers});
             this.menuMain.Location = new System.Drawing.Point(0, 0);
             this.menuMain.Name = "menuMain";
             this.menuMain.Size = new System.Drawing.Size(779, 24);
@@ -191,6 +204,44 @@
             this.miFile.Name = "miFile";
             this.miFile.Size = new System.Drawing.Size(60, 20);
             this.miFile.Text = "Archivo";
+            // 
+            // miSep1
+            // 
+            this.miSep1.Name = "miSep1";
+            this.miSep1.Size = new System.Drawing.Size(106, 6);
+            // 
+            // miUsers
+            // 
+            this.miUsers.Name = "miUsers";
+            this.miUsers.Size = new System.Drawing.Size(64, 20);
+            this.miUsers.Text = "Usuarios";
+            this.miUsers.Click += new System.EventHandler(this.miUsers_Click);
+            // 
+            // tsbtnNew
+            // 
+            this.tsbtnNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnNew.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbtnNewCourse,
+            this.tsbtnNewStudent});
+            this.tsbtnNew.Image = global::ArgenCatProj.Properties.Resources.gnome_document_new;
+            this.tsbtnNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnNew.Name = "tsbtnNew";
+            this.tsbtnNew.Size = new System.Drawing.Size(32, 22);
+            this.tsbtnNew.Text = "toolStripSplitButton1";
+            // 
+            // tsbtnNewCourse
+            // 
+            this.tsbtnNewCourse.Name = "tsbtnNewCourse";
+            this.tsbtnNewCourse.Size = new System.Drawing.Size(129, 22);
+            this.tsbtnNewCourse.Text = "Curso";
+            this.tsbtnNewCourse.Click += new System.EventHandler(this.miFileNewCourse_Click);
+            // 
+            // tsbtnNewStudent
+            // 
+            this.tsbtnNewStudent.Name = "tsbtnNewStudent";
+            this.tsbtnNewStudent.Size = new System.Drawing.Size(129, 22);
+            this.tsbtnNewStudent.Text = "Estudiante";
+            this.tsbtnNewStudent.Click += new System.EventHandler(this.miFileNewStudent_Click);
             // 
             // miFileNew
             // 
@@ -216,11 +267,6 @@
             this.miFileNewStudent.Text = "Estudiante";
             this.miFileNewStudent.Click += new System.EventHandler(this.miFileNewStudent_Click);
             // 
-            // miSep1
-            // 
-            this.miSep1.Name = "miSep1";
-            this.miSep1.Size = new System.Drawing.Size(106, 6);
-            // 
             // miExit
             // 
             this.miExit.Image = global::ArgenCatProj.Properties.Resources.exit;
@@ -228,6 +274,11 @@
             this.miExit.Size = new System.Drawing.Size(109, 22);
             this.miExit.Text = "Salir";
             this.miExit.Click += new System.EventHandler(this.miExit_Click);
+            // 
+            // tsslblLegend
+            // 
+            this.tsslblLegend.Name = "tsslblLegend";
+            this.tsslblLegend.Size = new System.Drawing.Size(0, 17);
             // 
             // FMain
             // 
@@ -251,6 +302,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvMain)).EndInit();
             this.pnlMainSearch.ResumeLayout(false);
             this.pnlMainSearch.PerformLayout();
+            this.toolMain.ResumeLayout(false);
+            this.toolMain.PerformLayout();
+            this.statusMain.ResumeLayout(false);
+            this.statusMain.PerformLayout();
             this.menuMain.ResumeLayout(false);
             this.menuMain.PerformLayout();
             this.ResumeLayout(false);
@@ -277,6 +332,11 @@
         private System.Windows.Forms.ToolStripMenuItem miFileNewCourse;
         private System.Windows.Forms.ToolStripMenuItem miFileNewStudent;
         private System.Windows.Forms.ToolStripSeparator miSep1;
+        private System.Windows.Forms.ToolStripSplitButton tsbtnNew;
+        private System.Windows.Forms.ToolStripMenuItem tsbtnNewCourse;
+        private System.Windows.Forms.ToolStripMenuItem tsbtnNewStudent;
+        private System.Windows.Forms.ToolStripMenuItem miUsers;
+        private System.Windows.Forms.ToolStripStatusLabel tsslblLegend;
     }
 }
 

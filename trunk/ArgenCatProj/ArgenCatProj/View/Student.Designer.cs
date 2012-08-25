@@ -46,10 +46,11 @@
             this.splitStudent = new System.Windows.Forms.SplitContainer();
             this.treeStudent = new System.Windows.Forms.TreeView();
             this.cmenuTreeStudent = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.miAddCourse = new System.Windows.Forms.ToolStripMenuItem();
             this.imgTreeStudent = new System.Windows.Forms.ImageList(this.components);
             this.dgvStudent = new System.Windows.Forms.DataGridView();
             this.statusStudent = new System.Windows.Forms.StatusStrip();
+            this.miAddCourse = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsslblLegend = new System.Windows.Forms.ToolStripStatusLabel();
             this.gboxStudentData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitStudent)).BeginInit();
             this.splitStudent.Panel1.SuspendLayout();
@@ -57,6 +58,7 @@
             this.splitStudent.SuspendLayout();
             this.cmenuTreeStudent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudent)).BeginInit();
+            this.statusStudent.SuspendLayout();
             this.SuspendLayout();
             // 
             // gboxStudentData
@@ -220,14 +222,6 @@
             this.cmenuTreeStudent.Name = "cmenuTreeStudent";
             this.cmenuTreeStudent.Size = new System.Drawing.Size(160, 26);
             // 
-            // miAddCourse
-            // 
-            this.miAddCourse.Image = global::ArgenCatProj.Properties.Resources.list_add;
-            this.miAddCourse.Name = "miAddCourse";
-            this.miAddCourse.Size = new System.Drawing.Size(159, 22);
-            this.miAddCourse.Text = "Inscribir a Curso";
-            this.miAddCourse.Click += new System.EventHandler(this.miAddCourse_Click);
-            // 
             // imgTreeStudent
             // 
             this.imgTreeStudent.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgTreeStudent.ImageStream")));
@@ -256,15 +250,31 @@
             this.dgvStudent.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvStudent.Size = new System.Drawing.Size(439, 264);
             this.dgvStudent.TabIndex = 0;
+            this.dgvStudent.DataSourceChanged += new System.EventHandler(this.dgvStudent_DataSourceChanged);
             this.dgvStudent.DoubleClick += new System.EventHandler(this.dgvStudent_DoubleClick);
             // 
             // statusStudent
             // 
+            this.statusStudent.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsslblLegend});
             this.statusStudent.Location = new System.Drawing.Point(10, 380);
             this.statusStudent.Name = "statusStudent";
             this.statusStudent.Size = new System.Drawing.Size(664, 22);
             this.statusStudent.TabIndex = 3;
             this.statusStudent.Text = "statusStrip1";
+            // 
+            // miAddCourse
+            // 
+            this.miAddCourse.Image = global::ArgenCatProj.Properties.Resources.list_add;
+            this.miAddCourse.Name = "miAddCourse";
+            this.miAddCourse.Size = new System.Drawing.Size(159, 22);
+            this.miAddCourse.Text = "Inscribir a Curso";
+            this.miAddCourse.Click += new System.EventHandler(this.miAddCourse_Click);
+            // 
+            // tsslblLegend
+            // 
+            this.tsslblLegend.Name = "tsslblLegend";
+            this.tsslblLegend.Size = new System.Drawing.Size(0, 17);
             // 
             // FStudent
             // 
@@ -278,7 +288,7 @@
             this.Name = "FStudent";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "q";
+            this.Text = "Estudiante";
             this.Load += new System.EventHandler(this.FStudent_Load);
             this.gboxStudentData.ResumeLayout(false);
             this.gboxStudentData.PerformLayout();
@@ -288,6 +298,8 @@
             this.splitStudent.ResumeLayout(false);
             this.cmenuTreeStudent.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudent)).EndInit();
+            this.statusStudent.ResumeLayout(false);
+            this.statusStudent.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -315,5 +327,6 @@
         private System.Windows.Forms.ContextMenuStrip cmenuTreeStudent;
         private System.Windows.Forms.ToolStripMenuItem miAddCourse;
         private System.Windows.Forms.StatusStrip statusStudent;
+        private System.Windows.Forms.ToolStripStatusLabel tsslblLegend;
     }
 }

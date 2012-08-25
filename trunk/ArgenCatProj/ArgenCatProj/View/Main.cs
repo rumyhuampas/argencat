@@ -102,5 +102,21 @@ namespace ArgenCatProj
             newstudent.ShowDialog(this);
             treeMain_AfterSelect(this, new TreeViewEventArgs(treeMain.Nodes[0].Nodes[1]));
         }
+
+        private void miUsers_Click(object sender, EventArgs e)
+        {
+            FUsers users = new FUsers();
+            users.ShowDialog(this);
+        }
+
+        private void dgvMain_DataSourceChanged(object sender, EventArgs e)
+        {
+            string title = COURSES;
+            if (treeMain.SelectedNode.Text == STUDENTS)
+            {
+                title = STUDENTS;
+            }
+            tsslblLegend.Text = title + ": " + dgvMain.Rows.Count.ToString();
+        }
     }
 }
