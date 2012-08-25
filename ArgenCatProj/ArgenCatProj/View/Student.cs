@@ -94,7 +94,23 @@ namespace ArgenCatProj.View
             {
                 FNewPayment np = new FNewPayment(_controller.GetPaymentData(Convert.ToInt32(dgvStudent.SelectedRows[0].Cells[0].Value)));
                 np.ShowDialog(this);
+                treeStudent_AfterSelect(this, new TreeViewEventArgs(treeStudent.SelectedNode));
             }
+        }
+
+        private void dgvStudent_DataSourceChanged(object sender, EventArgs e)
+        {
+            int payed = 0;
+            int notPayed = 0;
+            foreach(DataGridViewRow row in dgvStudent.Rows){
+                if (row.Cells[1].Value.ToString() == "1"){
+                    payed++;
+                }
+                else{
+                    notPayed++;
+                }
+            }
+            tsslblLegend.Text = "Cuotas pagadas: " + payed.ToString() + " - Coutas adeudadas: " + notPayed.ToString();
         }
     }
 }
