@@ -60,5 +60,12 @@ namespace ArgenCatProj.Controller
                     where students.Id == id
                     select students).First();
         }
+
+        public course GetCourse(int id)
+        {
+            return (from courses in _db.courses
+                    where courses.Id == id
+                    select courses).First();
+        }
     }
 }

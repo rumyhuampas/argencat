@@ -87,6 +87,14 @@ namespace ArgenCatProj
                 FStudent student = new FStudent(_controller.GetStudent(Convert.ToInt32(dgvMain.SelectedRows[0].Cells[0].Value)));
                 student.ShowDialog(this);
             }
+            else
+            {
+                if (treeMain.SelectedNode.Text == COURSES)
+                {
+                    FCourse course = new FCourse(_controller.GetCourse(Convert.ToInt32(dgvMain.SelectedRows[0].Cells[0].Value)));
+                    course.ShowDialog(this);
+                }
+            }
         }
 
         private void miFileNewCourse_Click(object sender, EventArgs e)
