@@ -16,7 +16,7 @@ namespace ArgenCatProj.Controller
             _db = new argencatEntities();
         }
 
-        public IEnumerable<dynamic> GetCursePayments(student stdnt, string CurseName)
+        public IEnumerable<dynamic> GetCoursePayments(student stdnt, string CurseName)
         {
             student_course_paymentplan currentStudentCurse = stdnt.student_course_paymentplan.Where(model => model.course.Name == CurseName).First();
             return from planpayments in _db.paymentplan_payments

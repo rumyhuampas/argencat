@@ -57,7 +57,7 @@ namespace ArgenCatProj.View
             if (e.Node.Level != 0)
             {
                 dgvStudent.Columns.Clear();
-                dgvStudent.DataSource = _controller.GetCursePayments(_student, e.Node.Text);
+                dgvStudent.DataSource = _controller.GetCoursePayments(_student, e.Node.Text);
                 dgvStudent.Columns[0].Visible = false;
                 dgvStudent.Columns[1].Visible = false;
                 DataGridViewImageColumn imageCol = new DataGridViewImageColumn();
